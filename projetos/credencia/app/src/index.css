@@ -1,0 +1,240 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: rgb(var(--color-ink));
+  background: #070b12;
+  color-scheme: dark;
+  /* O app abre no tema claro (main.tsx); estes valores ficam para .tema-escuro. */
+  --color-ink: 229 238 248;
+  --color-muted: 142 162 184;
+  --color-panel: 16 26 40;
+  --color-panel-strong: 7 11 18;
+  --color-line: 45 62 86;
+  --chart-grid-opacity: 0.62;
+  --shadow-panel: 0 18px 48px rgba(2, 6, 23, 0.34);
+  --app-background:
+    linear-gradient(135deg, rgba(37, 99, 235, 0.18) 0%, rgba(14, 165, 233, 0.08) 38%, transparent 64%),
+    linear-gradient(180deg, #08111f 0%, #070b12 48%, #050814 100%);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --color-ink: 15 23 42;
+  --color-muted: 71 85 105;
+  --color-panel: 248 250 252;
+  --color-panel-strong: 255 255 255;
+  --color-line: 203 213 225;
+  --chart-grid-opacity: 0.84;
+  --shadow-panel: 0 14px 34px rgba(15, 23, 42, 0.07);
+  --app-background:
+    linear-gradient(135deg, rgba(14, 165, 233, 0.16) 0%, rgba(37, 99, 235, 0.07) 42%, transparent 68%),
+    linear-gradient(180deg, #f8fbff 0%, #eef7ff 54%, #f8fafc 100%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background: var(--app-background);
+}
+
+body,
+button,
+input,
+select {
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+::selection {
+  color: #020617;
+  background: #93c5fd;
+}
+
+/* Bloco escuro dentro do tema claro (menu lateral): redefine as variáveis. */
+.tema-escuro {
+  --color-ink: 229 238 248;
+  --color-muted: 148 163 184;
+  --color-panel: 22 34 54;
+  --color-panel-strong: 11 18 32;
+  --color-line: 38 52 74;
+  color: rgb(var(--color-ink));
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--color-panel-strong));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-line));
+  border: 2px solid rgb(var(--color-panel-strong));
+  border-radius: 999px;
+}
+
+@layer components {
+  .panel {
+    @apply rounded-lg border border-line bg-panel/90 shadow-panel backdrop-blur;
+  }
+
+  .panel-soft {
+    @apply rounded-lg border border-line bg-panel/70 backdrop-blur;
+  }
+
+  .field-label {
+    @apply text-[0.68rem] font-medium uppercase tracking-[0.08em] text-muted;
+  }
+
+  .focus-ring {
+    @apply outline-none ring-0 transition focus:border-accent focus:ring-2 focus:ring-accent/20;
+  }
+
+  .input {
+    @apply focus-ring h-10 w-full rounded-lg border border-line bg-panel/80 px-3 text-sm text-ink placeholder:text-muted/60;
+  }
+
+  .nav-active {
+    @apply bg-accent text-slate-950;
+  }
+
+  .brand-symbol-blue {
+    filter: brightness(0) saturate(100%) invert(68%) sepia(88%) saturate(1351%) hue-rotate(163deg) brightness(101%) contrast(96%);
+  }
+}
+
+:root[data-theme="light"] .nav-active {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.recharts-cartesian-grid line,
+.recharts-polar-grid-angle line,
+.recharts-polar-grid-concentric circle,
+.recharts-polar-grid-concentric polygon {
+  stroke: rgb(var(--color-line)) !important;
+  opacity: var(--chart-grid-opacity);
+}
+
+.recharts-text,
+.recharts-label,
+.recharts-cartesian-axis-tick-value {
+  fill: rgb(var(--color-muted)) !important;
+}
+
+/* ---------- Vitrine e microinterações ---------- */
+
+.cursor-onda {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 46px;
+  height: 46px;
+  margin: -23px 0 0 -23px;
+  border-radius: 999px;
+  border: 2px solid rgba(37, 99, 235, 0.9);
+  animation: cursorOnda 620ms ease-out forwards;
+}
+
+@keyframes cursorOnda {
+  from { transform: scale(0.3); opacity: 1; }
+  to { transform: scale(1.5); opacity: 0; }
+}
+
+.toast-in {
+  animation: toastIn 320ms cubic-bezier(.22, 1, .36, 1) both;
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+
+.linha-nova {
+  animation: linhaNova 2.6s ease-out both;
+}
+
+@keyframes linhaNova {
+  0% { background: rgba(37, 99, 235, 0.16); }
+  100% { background: transparent; }
+}
+
+.surge {
+  animation: surge 520ms cubic-bezier(.22, 1, .36, 1) both;
+}
+
+@keyframes surge {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+.scan-linha {
+  animation: scanLinha 1.6s ease-in-out infinite alternate;
+}
+
+@keyframes scanLinha {
+  from { top: 8%; }
+  to { top: 88%; }
+}
+
+.sem-barra {
+  scrollbar-width: none;
+}
+
+.sem-barra::-webkit-scrollbar {
+  display: none;
+}
+
+/* Vitrine da home: sem barras de rolagem, nem vertical nem horizontal. */
+html.vitrine,
+html.vitrine * {
+  scrollbar-width: none;
+}
+
+html.vitrine ::-webkit-scrollbar {
+  display: none;
+}
+
+html.vitrine body {
+  overflow-x: hidden;
+}
+
+/* Celular: campos com 16px evitam o zoom automático do iPhone ao focar. */
+@media (max-width: 640px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}

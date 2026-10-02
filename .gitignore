@@ -1,0 +1,14 @@
+# Dependências (recriadas com `npm install` dentro de cada app)
+node_modules/
+
+# Sistema e editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+*.log
+npm-debug.log*
+
+# Variáveis de ambiente
+.env
+.env.*

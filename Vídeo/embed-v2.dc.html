@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; padding: 0; overflow: hidden; }
+  /* Cópia só para embed no site: sem barra de play/pause/scrub/download.
+     A barra continua no DOM (o relógio da engine depende dela), apenas
+     não aparece. Para editar a peça, use "Video Planilhas para Sistema v2.dc.html". */
+  [data-omelette-chrome] { display: none !important; }
+  /* Sem fundo preto atrás do quadro: o que sobra em volta do canvas fica
+     transparente e mostra a cor da seção da home. */
+  html, body { background: transparent !important; }
+  [data-om-starter] { background: transparent !important; }
+  [data-om-starter] svg { box-shadow: none !important; }
+  a { color: #2E86FF; text-decoration: none; }
+  a:hover { color: #E9F1FF; }
+</style>
+<script>window.OM_SCENES = '[{"name": "Gancho", "dur": 3.2, "desc": "Pergunta de abertura: a operação ainda roda em planilhas?"}, {"name": "Problema", "dur": 15.0, "desc": "Ferramentas se espalham, retrabalho, cada base com seu relatório"}, {"name": "Virada", "dur": 5.8, "desc": "Flash de luz e tudo converge para um só sistema"}, {"name": "Acesso e painel", "dur": 7.3, "desc": "Login por perfil e indicadores ao vivo, com prazo 11d → 2,4d"}, {"name": "Equipes", "dur": 9.1, "desc": "Ranking e usuários, com +41% de execução"}, {"name": "Campo", "dur": 8.3, "desc": "A versão mobile e a cobertura em campo"}, {"name": "Encerramento", "dur": 7.8, "desc": "Menos planilhas, + gestão: marca e chamada para conversa"}]';</script>
+<script>window.OM_PLAYBACK = '{"mode":"loop"}';</script>
+<script>window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "motionEditor": false,
+  "accent": "#2E86FF",
+  "showTitles": true
+}/*EDITMODE-END*/;</script>
+</helmet>
+<x-import component-from-global-scope="VideoApp" from="./animations-v3.jsx ./tweaks-panel.jsx ./piece-v2.jsx" hint-size="100%,100%"></x-import>
+</x-dc>
+</body>
+</html>

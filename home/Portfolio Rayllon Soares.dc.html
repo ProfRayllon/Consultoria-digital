@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#05080D; --navy:#071426; --card:#0B1624; --fg:#F8FAFC; --muted:#94A3B8;
+  --accent:#2563EB; --accent2:#3B82F6; --ivory:#EDE6D6; --line:rgba(148,163,184,0.14);
+  --nav-display:flex; --menu-btn:none; --cta-display:inline-flex; --header-h:76px; --gutter:24px; --hero-cols:minmax(280px,0.85fr) minmax(340px,1.15fr); --sobre-cols:minmax(220px,320px) 1fr; --fer-cols:168px 1fr; --video-cols:minmax(280px,0.62fr) minmax(320px,1.38fr); --serv-grid:repeat(3,minmax(0,1fr));  --metodo-cols:repeat(5,minmax(0,1fr)); --proj-visiveis:4; --vit-passo-min:0px;
+}
+[data-rail]{scrollbar-width:none;-ms-overflow-style:none}
+[data-rail]::-webkit-scrollbar{display:none}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#05080D;color:#F8FAFC;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-wrap:pretty}
+a{color:#3B82F6;text-decoration:none}
+a:hover{color:#60A5FA}
+@keyframes rsRise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+[data-reveal]{animation:rsRise .85s cubic-bezier(.22,1,.36,1) both}
+[data-serv]:hover svg{stroke:#DBEAFE;filter:drop-shadow(0 0 10px rgba(59,130,246,0.85))}
+[data-tec] img{opacity:0.32;transition:opacity .3s,filter .3s,transform .3s}
+[data-tec]:hover img{opacity:1;filter:drop-shadow(0 0 12px rgba(59,130,246,0.95));transform:scale(1.06)}
+[data-serv]:hover [data-serv-ico]{background:linear-gradient(158deg,rgba(37,99,235,0.6),rgba(37,99,235,0.14));box-shadow:inset 0 0 0 1px rgba(59,130,246,0.65),0 0 24px -6px rgba(37,99,235,1)}
+@supports (animation-timeline:view()){[data-reveal]{animation-timeline:view();animation-range:entry 0% entry 55%;animation-fill-mode:both}}
+@keyframes rsDraw{from{stroke-dashoffset:900}to{stroke-dashoffset:0}}
+@keyframes rsFade{from{opacity:0}to{opacity:1}}
+@keyframes rsServProg{from{width:0}to{width:100%}}
+@keyframes rsServEntra{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes rsSlideEsq{from{opacity:0;transform:translateX(56px)}to{opacity:1;transform:none}}
+@keyframes rsSlideDir{from{opacity:0;transform:translateX(-56px)}to{opacity:1;transform:none}}
+@keyframes rsPulse{0%,100%{opacity:.35}50%{opacity:1}}
+@keyframes rsZapHalo{0%{transform:scale(1);opacity:.3}72%,100%{transform:scale(1.7);opacity:0}}
+[data-zap]:hover [data-zap-rotulo]{max-width:190px;opacity:1;margin-left:12px}
+@keyframes rsMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (max-width:760px){ :root{ --hero-cols:minmax(0,1fr) } }
+@media (max-width:900px){ :root{ --metodo-linha:none } }
+@media (max-width:560px){ :root{ --serv-grid:repeat(2,minmax(0,1fr)); --serv-gap:10px; --serv-card-h:128px; --serv-card-gap:14px; --serv-card-pad:16px; --serv-card-raio:14px; --serv-ico:46px; --serv-nome:14.5px } }
+@media (max-width:560px){ :root{ --vit-contador:none } }
+@media (max-width:980px){ :root{ --vit-dir:column; --vit-passos-w:100%; --vit-passos-ordem:2; --vit-passos-alto:auto } }
+@media (max-width:1060px){ :root{ --nav-display:none; --proj-visiveis:3 } }
+@media (max-width:820px){ :root{ --sobre-cols:96px minmax(0,1fr); --sobre-foto-row:auto; --sobre-cab-align:center; --sobre-corpo-col:1 / -1; --sobre-rgap:22px; --sobre-h2-m:6px 0 0; --sobre-sub:block; --sobre-foto-raio:14px; --fer-cols:minmax(0,1fr); --video-cols:minmax(0,1fr); --serv-grid:repeat(2,minmax(0,1fr)); --proj-visiveis:2 } }
+@media (max-width:560px){ :root{ --proj-visiveis:1 } }
+@media (max-width:880px){ :root{ --nav-display:none } }
+@media (max-width:1060px){ :root{ --menu-btn:flex } }
+@media (max-width:760px){ :root{ --hero-mock:none } }
+@media (max-width:560px){ :root{ --mock-filtro:none; --cta-display:none; --menu-ml:auto; --header-h:64px; --gutter:18px } }
+@media (max-width:760px){ html{ -webkit-text-size-adjust:100%; scroll-padding-top:72px } a,button{ touch-action:manipulation } }
+@keyframes rsMenuEntra{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+
+/* ---------- Celular ---------- */
+@media (max-width:900px){
+  [data-metodo-grid]{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+  [data-metodo-grid] > button{border:1px solid rgba(148,163,184,0.12)!important;border-radius:12px!important;padding:12px 14px!important;background:var(--card)!important;transition:border-color .4s,background .4s}
+  [data-metodo-grid] > button[data-ativo="true"]{border-color:rgba(59,130,246,0.55)!important;background:linear-gradient(160deg,rgba(37,99,235,0.16),rgba(11,22,36,0.9))!important}
+  [data-metodo-ponto]{display:none}
+  [data-metodo-num]{font-size:18px!important;margin-top:0!important}
+  [data-metodo-grid] > button > span:nth-child(3){font-size:14.5px!important;margin-top:6px!important}
+  [data-metodo-grid] > button > span:nth-child(4){font-size:12.5px!important;line-height:1.5!important;margin-top:4px!important}
+}
+@media (max-width:560px){
+  [data-metodo-grid]{grid-template-columns:minmax(0,1fr)!important;gap:8px!important}
+  /* Uma linha por etapa: número ao lado do título, texto curto embaixo. */
+  [data-metodo-grid] > button{display:grid!important;grid-template-columns:30px 1fr;column-gap:8px;align-items:baseline;padding:11px 14px!important}
+  [data-metodo-grid] > button > span:nth-child(3){margin-top:0!important}
+  [data-metodo-grid] > button > span:nth-child(4){grid-column:2}
+  [data-sobre-destaques]{display:none!important}
+}
+@media (max-width:760px){
+  [data-hero-btn]{padding:11px 18px!important;font-size:13.5px!important}
+  [data-hero-tec]{flex-wrap:nowrap!important;justify-content:space-between;gap:8px!important;margin-top:24px!important}
+  [data-hero-tec] [data-tec]{gap:5px!important;font-size:11.5px!important}
+  [data-hero-tec] img{width:22px!important;height:22px!important;opacity:0.7}
+  /* Faixa de ferramentas: uma linha só, alternando a categoria. */
+  #ferramentas [data-fer-linha]{display:none!important}
+  #ferramentas[data-fer="0"] [data-fer-linha="0"],
+  #ferramentas[data-fer="1"] [data-fer-linha="1"],
+  #ferramentas[data-fer="2"] [data-fer-linha="2"],
+  #ferramentas[data-fer="3"] [data-fer-linha="3"]{display:grid!important;animation:rsFade .5s ease both}
+}
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div style="position:relative;min-height:100vh;overflow-x:hidden;display:flex;flex-direction:column">
+  <div aria-hidden="true" style="position:fixed;inset:-24vh -12vw;z-index:-1;pointer-events:none;background:radial-gradient(46vw 38vh at 24% 16%,rgba(37,99,235,0.34),transparent 66%),radial-gradient(40vw 34vh at 80% 58%,rgba(29,78,216,0.26),transparent 70%),radial-gradient(38vw 30vh at 46% 104%,rgba(59,130,246,0.2),transparent 72%);filter:blur(80px);opacity:calc(0.5 + var(--sy,0) * 0.5);transform:translate3d(0,calc(var(--sy,0) * -22vh),0);transition:opacity .4s linear"></div>
+
+  <header style="order:0;position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(5,8,13,0.82);border-bottom:1px solid var(--line)">
+    <div style="max-width:1180px;margin:0 auto;padding:0 var(--gutter,24px);height:var(--header-h,76px);display:flex;align-items:center;gap:clamp(12px,3vw,32px)">
+      <a href="#inicio" style="display:flex;align-items:center;gap:11px;flex:none">
+        <img src="uploads/logo.png" alt="Rayllon Soares" style="height:40px;width:auto;display:block;filter:drop-shadow(0 0 10px rgba(59,130,246,0.45))" />
+        <span style="display:flex;flex-direction:column;line-height:1">
+          <span style="font-family:Manrope,sans-serif;font-weight:700;font-size:17px;letter-spacing:-0.02em;color:#F8FAFC">Rayllon Soares</span>
+          <span style="font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent2);font-weight:600;margin-top:5px">Estratégia, Dados e Soluções</span>
+        </span>
+      </a>
+      <nav style="display:var(--nav-display);align-items:center;gap:28px;margin-left:auto;font-size:14px;color:var(--muted)">
+        <sc-for list="{{ navItens }}" as="n" hint-placeholder-count="6">
+          <a href="{{ n.href }}" onMouseEnter="{{ n.onEnter }}" onMouseLeave="{{ n.onLeave }}" style="position:relative;color:#94A3B8;padding-bottom:16px;margin-bottom:-16px;transition:color .25s" style-hover="color:#F8FAFC">{{ n.label }}<span style="{{ n.dotStyle }}"></span></a>
+        </sc-for>
+      </nav>
+      <a href="#contato" style="margin-left:auto;flex:none;display:var(--cta-display,inline-flex);background:var(--accent);color:#F8FAFC;font-size:13.5px;font-weight:600;padding:10px 18px;border-radius:8px;letter-spacing:-0.005em;white-space:nowrap;box-shadow:0 0 0 1px rgba(59,130,246,0.4),0 8px 24px -8px rgba(37,99,235,0.7)" style-hover="background:#1D4ED8;color:#F8FAFC">Agendar conversa</a>
+      <button type="button" onClick="{{ menuAlternar }}" aria-label="{{ menuRotulo }}" aria-expanded="{{ menuAbertoTxt }}" style="display:var(--menu-btn,none);flex:none;margin-left:var(--menu-ml,0);width:44px;height:44px;border-radius:11px;align-items:center;justify-content:center;cursor:pointer;color:#E2E8F0;background:rgba(148,163,184,0.06);border:1px solid rgba(148,163,184,0.2)">
+        <sc-if value="{{ menuFechado }}" hint-placeholder-val="{{ true }}"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="width:20px;height:20px"><path d="M3.5 6h13M3.5 10h13M3.5 14h13" /></svg></sc-if>
+        <sc-if value="{{ menuAberto }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="width:20px;height:20px"><path d="M5 5l10 10M15 5 5 15" /></svg></sc-if>
+      </button>
+    </div>
+    <sc-if value="{{ menuAberto }}" hint-placeholder-val="{{ false }}">
+      <nav aria-label="Menu" style="position:absolute;left:0;right:0;top:100%;height:calc(100vh - var(--header-h,76px));overflow-y:auto;background:#05080D;border-bottom:1px solid var(--line);box-shadow:0 30px 60px -20px rgba(0,0,0,0.9);animation:rsMenuEntra .25s ease both">
+        <div style="max-width:1180px;margin:0 auto;padding:10px var(--gutter,24px) 22px;display:grid">
+          <sc-for list="{{ navItens }}" as="n" hint-placeholder-count="6">
+            <a href="{{ n.href }}" onClick="{{ menuFechar }}" style="display:flex;align-items:center;justify-content:space-between;min-height:52px;font-family:Manrope,sans-serif;font-size:17px;font-weight:600;color:#E2E8F0;border-bottom:1px solid rgba(148,163,184,0.1)" style-hover="color:#FFFFFF">{{ n.label }}<svg viewBox="0 0 16 16" fill="none" stroke="#475569" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M6 3.5 10.5 8 6 12.5" /></svg></a>
+          </sc-for>
+          <a href="#contato" onClick="{{ menuFechar }}" style="margin-top:18px;display:flex;align-items:center;justify-content:center;min-height:50px;border-radius:11px;background:var(--accent);color:#F8FAFC;font-size:15px;font-weight:600;box-shadow:0 0 0 1px rgba(59,130,246,0.4),0 12px 30px -12px rgba(37,99,235,1)" style-hover="color:#FFFFFF">Agendar conversa</a>
+        </div>
+      </nav>
+    </sc-if>
+  </header>
+
+  <section id="inicio" style="order:10;position:relative;padding:clamp(44px,5vw,76px) 0 clamp(46px,5vw,78px)">
+    <div style="position:absolute;inset:0;background:radial-gradient(1200px 560px at 76% -6%,rgba(37,99,235,0.2),transparent 68%);pointer-events:none"></div>
+    <div style="position:relative;max-width:1180px;margin:0 auto;padding:0 var(--gutter,24px);display:grid;grid-template-columns:var(--hero-cols);gap:clamp(34px,4vw,54px);align-items:center">
+      <div data-reveal="">
+        <h1 style="font-family:Manrope,sans-serif;font-weight:700;font-size:clamp(32px,3.6vw,52px);line-height:1.08;letter-spacing:-0.03em;margin:0;color:#F8FAFC;max-width:18ch">Soluções personalizadas para <span ref="{{ palavraRef }}" style="color:var(--accent2);font-weight:800;text-shadow:0 0 28px rgba(59,130,246,0.5);white-space:nowrap"></span> dados em decisões.</h1>
+        <p style="margin:24px 0 0;font-size:clamp(16px,1.25vw,18px);line-height:1.65;color:var(--muted);max-width:52ch">Desenvolvo sistemas, dashboards, automações e soluções digitais sob medida, combinando tecnologia, dados e visão de negócio.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:38px">
+          <a href="#projetos" data-hero-btn="" style="background:var(--accent);color:#F8FAFC;font-size:14.5px;font-weight:600;padding:14px 26px;border-radius:9px;box-shadow:0 0 0 1px rgba(59,130,246,0.4),0 14px 40px -14px rgba(37,99,235,0.9)" style-hover="background:#1D4ED8;color:#F8FAFC">Ver projetos</a>
+          <a href="#contato" data-hero-btn="" style="border:1px solid var(--line);color:#F8FAFC;font-size:14.5px;font-weight:600;padding:14px 26px;border-radius:9px;background:transparent" style-hover="border-color:rgba(59,130,246,0.55);color:#F8FAFC">Falar comigo</a>
+        </div>
+        <div data-hero-tec="" style="display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px;margin-top:30px">
+          <span data-tec="" style="display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:500;color:var(--muted);white-space:nowrap;transition:color .3s" style-hover="color:#F8FAFC"><img src="media/icones_dev/React.png" alt="" loading="lazy" style="width:36px;height:36px;flex:none;object-fit:contain;display:block" />React</span>
+          <span data-tec="" style="display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:500;color:var(--muted);white-space:nowrap;transition:color .3s" style-hover="color:#F8FAFC"><img src="media/icones_dev/APIs%20REST.png" alt="" loading="lazy" style="width:36px;height:36px;flex:none;object-fit:contain;display:block" />APIs REST</span>
+          <span data-tec="" style="display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:500;color:var(--muted);white-space:nowrap;transition:color .3s" style-hover="color:#F8FAFC"><img src="media/icones_dev/Python.png" alt="" loading="lazy" style="width:36px;height:36px;flex:none;object-fit:contain;display:block" />Python</span>
+          <span data-tec="" style="display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:500;color:var(--muted);white-space:nowrap;transition:color .3s" style-hover="color:#F8FAFC"><img src="media/icones_dev/PostgreSQL.png" alt="" loading="lazy" style="width:36px;height:36px;flex:none;object-fit:contain;display:block" />PostgreSQL</span>
+        </div>
+      </div>
+
+      <sc-if value="{{ showHeroMockup }}" hint-placeholder-val="{{ true }}">
+        <div data-reveal="" style="display:var(--hero-mock,block);position:relative;perspective:1700px;margin-top:clamp(-28px,-1.6vw,0px)">
+          <div style="position:absolute;left:6%;right:-6%;top:8%;bottom:8%;background:radial-gradient(closest-side,rgba(37,99,235,0.4),transparent 75%);filter:blur(46px);pointer-events:none"></div>
+          <div style="position:relative;transform:rotateY(-5deg) rotateX(2deg) scale(0.99);transform-style:preserve-3d;transition:transform 1s cubic-bezier(.22,1,.36,1);border-radius:18px" style-hover="transform:rotateY(0deg) rotateX(0deg) scale(1)">
+            <div style="display:flex;border-radius:18px;overflow:hidden;border:1px solid rgba(59,130,246,0.2);background:linear-gradient(158deg,#0C1A2C 0%,#071426 46%,#05080D 100%);box-shadow:inset 0 1px 0 rgba(237,230,214,0.08),0 0 0 1px rgba(5,8,13,0.9),0 50px 110px -40px rgba(37,99,235,0.5)">
+
+              <div style="width:58px;flex:none;border-right:1px solid rgba(148,163,184,0.1);background:rgba(5,8,13,0.55);display:flex;flex-direction:column;align-items:center;gap:20px;padding:16px 0">
+                <img src="uploads/logo.png" alt="" style="width:30px;height:auto;opacity:0.95;filter:drop-shadow(0 0 8px rgba(59,130,246,0.6))" />
+                <div style="display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:6px">
+                  <span style="width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:rgba(37,99,235,0.18);box-shadow:inset 0 0 0 1px rgba(59,130,246,0.45),0 0 16px -2px rgba(37,99,235,0.8)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#93C5FD" stroke-width="1.6" style="width:15px;height:15px"><path d="M4 11 12 4l8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-8Z" /></svg>
+                  </span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="1.6" style="width:15px;height:15px"><rect x="4" y="4" width="6" height="6" rx="1.5" /><rect x="14" y="4" width="6" height="6" rx="1.5" /><rect x="4" y="14" width="6" height="6" rx="1.5" /><rect x="14" y="14" width="6" height="6" rx="1.5" /></svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="1.6" style="width:15px;height:15px"><path d="M5 20V12M12 20V5M19 20v-6" /></svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="1.6" style="width:15px;height:15px"><ellipse cx="12" cy="6" rx="7" ry="3" /><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6" /></svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="1.6" style="width:15px;height:15px"><circle cx="12" cy="12" r="3" /><circle cx="12" cy="12" r="8" /></svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="1.6" style="width:15px;height:15px"><circle cx="12" cy="12" r="3" /><path d="M12 3v3M12 18v3M3 12h3M18 12h3M6 6l2 2M16 16l2 2M18 6l-2 2M8 16l-2 2" /></svg>
+                </div>
+              </div>
+
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+                <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid rgba(148,163,184,0.1);background:rgba(7,20,38,0.5)">
+                  <span style="font-family:Manrope,sans-serif;font-size:14px;font-weight:600;color:var(--ivory);letter-spacing:-0.015em">Visão Geral</span>
+                  <div style="margin-left:auto;display:flex;gap:6px;align-items:center;min-width:0">
+                    <sc-for list="{{ periodos }}" as="pr" hint-placeholder-count="3">
+                      <button type="button" onClick="{{ pr.onSelect }}" style="{{ pr.style }}">{{ pr.label }}</button>
+                    </sc-for>
+                    <span style="display:var(--mock-filtro,inline-flex);align-items:center;gap:6px;font-size:11px;color:var(--muted);border:1px solid rgba(148,163,184,0.16);border-radius:7px;padding:5px 9px;cursor:default" style-hover="border-color:rgba(59,130,246,0.5);color:#F8FAFC">
+                      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:11px;height:11px"><path d="M2 4h12M4 8h8M6.5 12h3" /></svg>Filtros
+                    </span>
+                  </div>
+                </div>
+
+                <div style="padding:16px;display:grid;gap:12px">
+                  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,120px),1fr));gap:10px">
+                    <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4">
+                      <div onClick="{{ k.onSelect }}" style="{{ k.style }}" style-hover="border-color:rgba(59,130,246,0.6);box-shadow:0 0 26px -8px rgba(37,99,235,0.95)">
+                        <div style="font-size:10px;color:var(--muted);letter-spacing:0.07em;text-transform:uppercase">{{ k.label }}</div>
+                        <div style="font-family:Manrope,sans-serif;font-weight:700;font-size:19px;letter-spacing:-0.025em;margin-top:6px;color:var(--ivory)">{{ k.valor }}</div>
+                        <div style="font-size:10.5px;color:#60A5FA;margin-top:5px">{{ k.delta }}</div>
+                      </div>
+                    </sc-for>
+                  </div>
+
+                  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px">
+                    <div style="border:1px solid rgba(148,163,184,0.12);border-radius:12px;padding:14px 15px 8px;background:linear-gradient(170deg,rgba(11,22,36,0.9),rgba(5,8,13,0.6))">
+                      <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:6px">
+                        <span style="font-size:12px;font-weight:600;color:var(--ivory)">{{ chartTitulo }}</span>
+                        <span style="font-size:10px;color:#64748B">{{ periodoLegenda }}</span>
+                      </div>
+                      <svg viewBox="0 0 320 100" preserveAspectRatio="none" style="width:100%;height:96px;display:block;overflow:visible">
+                        <defs>
+                          <linearGradient id="rsArea" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.42" />
+                            <stop offset="100%" stop-color="#3B82F6" stop-opacity="0" />
+                          </linearGradient>
+                        </defs>
+                        <g stroke="rgba(148,163,184,0.1)" stroke-width="1">
+                          <line x1="0" y1="22" x2="320" y2="22" />
+                          <line x1="0" y1="50" x2="320" y2="50" />
+                          <line x1="0" y1="78" x2="320" y2="78" />
+                        </g>
+                        <path d="{{ areaPath }}" fill="url(#rsArea)" style="animation:rsFade .9s ease-out both" />
+                        <path d="{{ linePath }}" fill="none" stroke="#60A5FA" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" style="filter:drop-shadow(0 0 7px rgba(59,130,246,0.95));stroke-dasharray:900;animation:rsDraw 1.6s cubic-bezier(.22,1,.36,1) both" />
+                      </svg>
+                    </div>
+
+                    <div style="border:1px solid rgba(148,163,184,0.12);border-radius:12px;padding:14px 15px;background:linear-gradient(170deg,rgba(11,22,36,0.9),rgba(5,8,13,0.6));display:flex;flex-direction:column;gap:12px">
+                      <span style="font-size:12px;font-weight:600;color:var(--ivory)">Distribuição por fonte</span>
+                      <div style="display:flex;align-items:center;gap:14px">
+                        <svg viewBox="0 0 42 42" style="width:78px;height:78px;flex:none;filter:drop-shadow(0 0 12px rgba(37,99,235,0.6))">
+                          <circle cx="21" cy="21" r="15.9" fill="none" stroke="rgba(148,163,184,0.1)" stroke-width="6" />
+                          <circle cx="21" cy="21" r="15.9" fill="none" stroke="#2563EB" stroke-width="6" stroke-dasharray="45 55" stroke-dashoffset="25" transform="rotate(-90 21 21)" pathLength="100" />
+                          <circle cx="21" cy="21" r="15.9" fill="none" stroke="#3B82F6" stroke-width="6" stroke-dasharray="30 70" stroke-dashoffset="-20" transform="rotate(-90 21 21)" pathLength="100" />
+                          <circle cx="21" cy="21" r="15.9" fill="none" stroke="#93C5FD" stroke-width="6" stroke-dasharray="15 85" stroke-dashoffset="-50" transform="rotate(-90 21 21)" pathLength="100" />
+                          <circle cx="21" cy="21" r="15.9" fill="none" stroke="rgba(237,230,214,0.5)" stroke-width="6" stroke-dasharray="10 90" stroke-dashoffset="-65" transform="rotate(-90 21 21)" pathLength="100" />
+                        </svg>
+                        <div style="display:grid;gap:7px;font-size:10.5px;color:var(--muted);flex:1;min-width:0">
+                          <span style="display:flex;align-items:center;gap:7px"><span style="width:7px;height:7px;border-radius:2px;background:#2563EB;flex:none"></span>Canal A<span style="margin-left:auto;color:var(--ivory)">45%</span></span>
+                          <span style="display:flex;align-items:center;gap:7px"><span style="width:7px;height:7px;border-radius:2px;background:#3B82F6;flex:none"></span>Canal B<span style="margin-left:auto;color:var(--ivory)">30%</span></span>
+                          <span style="display:flex;align-items:center;gap:7px"><span style="width:7px;height:7px;border-radius:2px;background:#93C5FD;flex:none"></span>Parcerias<span style="margin-left:auto;color:var(--ivory)">15%</span></span>
+                          <span style="display:flex;align-items:center;gap:7px"><span style="width:7px;height:7px;border-radius:2px;background:rgba(237,230,214,0.5);flex:none"></span>Outros<span style="margin-left:auto;color:var(--ivory)">10%</span></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style="border:1px solid rgba(148,163,184,0.12);border-radius:12px;padding:14px 15px;background:linear-gradient(170deg,rgba(11,22,36,0.9),rgba(5,8,13,0.6))">
+                    <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:12px">
+                      <span style="font-size:12px;font-weight:600;color:var(--ivory)">Desempenho por produto</span>
+                      <span style="font-size:10px;color:#64748B">clique nos indicadores acima</span>
+                    </div>
+                    <div style="display:flex;align-items:flex-end;gap:8px;height:62px">
+                      <sc-for list="{{ barras }}" as="b" hint-placeholder-count="8">
+                        <div onMouseEnter="{{ b.onEnter }}" onMouseLeave="{{ b.onLeave }}" style="position:relative;flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px;cursor:default">
+                          <span style="{{ b.tipStyle }}">{{ b.valor }}</span>
+                          <div style="{{ b.barStyle }}"></div>
+                          <span style="font-size:8.5px;color:#64748B">{{ b.label }}</span>
+                        </div>
+                      </sc-for>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+  </section>
+
+  <section id="solucoes" style="order:20;padding:clamp(48px,5.2vw,78px) 0;border-top:1px solid var(--line)">
+    <div style="max-width:1180px;margin:0 auto;padding:0 var(--gutter,24px)">
+      <div data-reveal="" style="max-width:56ch">
+        <span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent2);font-weight:600">Serviços</span>
+        <h2 style="font-family:Manrope,sans-serif;font-weight:700;font-size:clamp(28px,3.2vw,42px);line-height:1.12;letter-spacing:-0.03em;margin:16px 0 0">Soluções que resolvem problemas reais</h2>
+      </div>
+
+      <div data-reveal="" style="position:relative;margin-top:clamp(26px,3vw,38px)">
+        <div style="display:grid;grid-template-columns:var(--serv-grid);gap:var(--serv-gap,16px)">
+          <sc-for list="{{ servicos }}" as="sv" hint-placeholder-count="6">
+            <a href="#contato" data-serv="" style="display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:var(--serv-card-gap,26px);min-height:var(--serv-card-h,180px);padding:var(--serv-card-pad,clamp(22px,2.2vw,28px));border-radius:var(--serv-card-raio,18px);border:1px solid rgba(148,163,184,0.14);background:radial-gradient(120% 90% at 100% 0%,rgba(37,99,235,0.14),transparent 60%),var(--card);text-decoration:none;transition:border-color .3s,box-shadow .3s,transform .3s" style-hover="border-color:rgba(59,130,246,0.55);box-shadow:0 26px 60px -30px rgba(37,99,235,0.95);transform:translateY(-3px)">
+              <span data-serv-ico="" style="width:var(--serv-ico,76px);height:var(--serv-ico,76px);border-radius:20px;display:flex;align-items:center;justify-content:center;background:linear-gradient(158deg,rgba(37,99,235,0.42),rgba(37,99,235,0.08));box-shadow:inset 0 0 0 1px rgba(59,130,246,0.45),0 0 30px -8px rgba(37,99,235,1);transition:background .3s,box-shadow .3s">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#BFDBFE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:calc(var(--serv-ico,76px) * 0.5);height:calc(var(--serv-ico,76px) * 0.5);transition:stroke .3s,filter .3s"><sc-for list="{{ sv.paths }}" as="d" hint-placeholder-count="2"><path d="{{ d }}"></path></sc-for></svg>
+              </span>
+              <span style="font-family:Manrope,sans-serif;font-weight:700;font-size:var(--serv-nome,clamp(18px,1.6vw,21px));letter-spacing:-0.02em;color:#F8FAFC;line-height:1.25">{{ sv.nome }}</span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="processo" style="order:30;padding:clamp(38px,4vw,58px) 0;background:rgba(7,20,38,0.72);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+    <div style="max-width:1180px;margin:0 auto;padding:0 var(--gutter,24px)">
+      <div data-reveal="">
+        <span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent2);font-weight:700">Metodologia</span>
+        <h2 style="font-family:Manrope,sans-serif;font-weight:700;font-size:clamp(25px,2.7vw,36px);line-height:1.12;letter-spacing:-0.03em;margin:12px 0 0">Da necessidade à solução.</h2>
+      </div>
+      <div data-reveal="" ref="{{ metodoRef }}" style="position:relative;margin-top:clamp(26px,2.8vw,36px)">
+        <div aria-hidden="true" style="display:var(--metodo-linha,block);position:absolute;left:7px;right:calc((100% - 96px) / 5 - 7px);top:6px;height:2px;border-radius:2px;background:rgba(148,163,184,0.14)">
+          <div style="{{ metodoPreenchimento }}"></div>
+        </div>
+        <div ref="{{ metodoGridRef }}" data-metodo-grid="" style="position:relative;display:grid;grid-template-columns:var(--metodo-cols);gap:26px 24px">
+          <sc-for list="{{ metodo }}" as="m" hint-placeholder-count="5">
+            <button type="button" onClick="{{ m.selecionar }}" data-ativo="{{ m.ativoTxt }}" style="display:flex;flex-direction:column;align-items:flex-start;text-align:left;background:transparent;border:0;padding:0;cursor:pointer;font:inherit;color:inherit">
+              <span data-metodo-ponto="" style="{{ m.pontoEstilo }}"></span>
+              <span data-metodo-num="" style="{{ m.numeroEstilo }}">{{ m.numero }}</span>
+              <span style="{{ m.tituloEstilo }}">{{ m.titulo }}</span>
+              <span style="{{ m.textoEstilo }}">{{ m.texto }}</span>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projetos" style="order:40;padding:clamp(48px,5.2vw,78px) 0">
+    <div style="max-width:1180px;margin:0 auto;padding:0 var(--gutter,24px)">
+      <div data-reveal="">
+        <span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent2);font-weight:600">Projetos</span>
+        <h2 style="font-family:Manrope,sans-serif;font-weight:700;font-size:clamp(28px,3.2vw,42px);line-height:1.12;letter-spacing:-0.03em;margin:16px 0 0">Projetos selecionados</h2>
+      </div>
+
+      <!-- ========================================================================
+           VITRINE — projetos com campo "vitrine" em projects-data.js, um por vez
+           (setas e seletor trocam). Duas telas (computador e celular) rodam o
+           build do próprio sistema com ?vitrine=desktop|celular. A home só manda
+           o número do passo; o roteiro mora em cada projeto.
+           ======================================================================== -->
+      <sc-if value="{{ temVitrine }}" hint-placeholder-val="{{ true }}">
+       <div style="position:relative">
+        <sc-if value="{{ vitVarios }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:clamp(22px,2.6vw,32px)">
+            <sc-for list="{{ vitPontos }}" as="v" hint-placeholder-count="2">
+              <button type="button" onClick="{{ v.ir }}" style="{{ v.estilo }}" style-hover="color:#F8FAFC;border-color:rgba(59,130,246,0.6)">{{ v.nome }}</button>
+            </sc-for>
+            <span style="flex:1"></span>
+            <span style="display:var(--vit-contador,inline);font-family:Manrope,sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;color:#475569">{{ vitContador }}</span>
+            <button type="button" onClick="{{ vitAnterior }}" aria-label="Projeto anterior" style="{{ vitSetaEsq }}" style-hover="background:#1D4ED8;color:#FFFFFF;transform:scale(1.06)">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><path d="M10 3.5 5.5 8l4.5 4.5" /></svg>
+            </button>
+            <button type="button" onClick="{{ vitProximo }}" aria-label="Próximo projeto" style="{{ vitSetaDir }}" style-hover="background:#1D4ED8;color:#FFFFFF;transform:scale(1.06)">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><path d="M6 3.5 10.5 8 6 12.5" /></svg>
+            </button>
+          </div>
+        </sc-if>
+        <article ref="{{ vitRef }}" style="margin-top:14px;position:relative;border-radius:22px;border:1px solid rgba(59,130,246,0.34);background:radial-gradient(70% 60% at 85% 0%,rgba(37,99,235,0.2),transparent 70%),linear-gradient(180deg,rgba(11,22,36,0.95),rgba(7,16,30,0.8));box-shadow:0 50px 110px -60px rgba(37,99,235,0.9)">
+          <div ref="{{ vitPalcoRef }}" style="overflow:hidden;border-radius:22px">
+            <div style="display:flex;flex-wrap:wrap;gap:14px 28px;align-items:flex-end;justify-content:space-between;padding:clamp(18px,2vw,26px) clamp(18px,2.4vw,30px) 0">
+              <div style="flex:1 1 420px;max-width:640px;min-width:0">
+                <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+                  <span style="font-size:11px;letter-spacing:0.09em;text-transform:uppercase;color:var(--accent2);font-weight:600">{{ vitCategoria }}</span>
+                </div>
+                <h3 style="font-family:Manrope,sans-serif;font-weight:800;font-size:clamp(25px,2.4vw,32px);line-height:1.05;letter-spacing:-0.035em;margin:8px 0 0">{{ vitNome }}</h3>
+                <p style="margin:7px 0 0;font-size:14px;line-height:1.55;color:var(--muted)">{{ vitDescricao }}</p>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:10px">
+                <a href="{{ vitDemo }}" target="_blank" rel="noreferrer" style="display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:#CBD5E1;border:1px solid rgba(148,163,184,0.28);border-radius:8px;padding:8px 14px;transition:all .25s" style-hover="color:#F8FAFC;border-color:rgba(59,130,246,0.65);background:rgba(37,99,235,0.12)">Demo<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px"><path d="M6 3.5h6.5V10M12.2 3.8 4 12" /></svg></a>
+              </div>
+            </div>
+
+            <div style="padding:clamp(18px,2vw,24px) clamp(18px,2.4vw,30px) clamp(18px,2vw,26px)">
+              <div style="display:flex;flex-direction:var(--vit-dir,row);align-items:flex-start;gap:var(--vit-gap,24px)">
+                <div ref="{{ vitAreaRef }}" style="flex:1;min-width:0;width:100%;display:flex;justify-content:center;align-items:flex-start;gap:var(--vit-gap,24px)">
+                <div style="flex:none;width:var(--vit-desk-w,72%);border-radius:12px;overflow:hidden;border:1px solid rgba(148,163,184,0.22);background:#0B1220;box-shadow:0 40px 80px -40px rgba(0,0,0,0.9),0 0 0 1px rgba(0,0,0,0.4)">
+                  <div style="display:flex;align-items:center;gap:12px;height:32px;padding:0 12px;background:#0E1726;border-bottom:1px solid rgba(148,163,184,0.12)">
+                    <span style="display:flex;gap:6px;flex:none"><span style="width:9px;height:9px;border-radius:50%;background:#33465F"></span><span style="width:9px;height:9px;border-radius:50%;background:#33465F"></span><span style="width:9px;height:9px;border-radius:50%;background:#33465F"></span></span>
+                    <span style="{{ vitSeloDesk }}">{{ vitPerfilDesk }}</span>
+                    <span style="flex:1;min-width:0;display:flex;align-items:center;justify-content:center;gap:6px;height:21px;border-radius:6px;background:rgba(5,8,13,0.7);font-size:11px;color:#94A3B8;white-space:nowrap;overflow:hidden">
+                      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" style="width:10px;height:10px;flex:none"><rect x="3.5" y="7" width="9" height="6.5" rx="1.4" /><path d="M5.5 7V5.2a2.5 2.5 0 0 1 5 0V7" /></svg><span style="overflow:hidden;text-overflow:ellipsis">{{ vitEndereco }}</span>
+                    </span>
+                    <span style="flex:none;display:flex;align-items:center;gap:6px;font-size:10.5px;color:#86EFAC"><span style="width:6px;height:6px;border-radius:50%;background:#22C55E;box-shadow:0 0 8px #22C55E;animation:rsPulse 1.8s ease-in-out infinite"></span>ao vivo</span>
+                  </div>
+                  <div ref="{{ vitDeskRef }}" style="position:relative;aspect-ratio:1280 / 800;overflow:hidden;background:#FFFFFF">
+                    <iframe ref="{{ vitDeskFrame }}" src="{{ vitSrcDesktop }}" title="Demonstração do sistema no computador" loading="lazy" tabindex="-1" aria-hidden="true" style="position:absolute;left:0;top:0;width:1280px;height:800px;border:0;display:block;transform-origin:0 0;transform:scale(var(--vit-esc-desk,0.5));pointer-events:none;background:#FFFFFF"></iframe>
+                  </div>
+                </div>
+
+                <div style="{{ celStyle }}">
+                  <div style="{{ celCorpoStyle }}"></div>
+                  <div ref="{{ vitCelRef }}" style="{{ celTelaStyle }}">
+                    <sc-if value="{{ celBarra }}" hint-placeholder-val="{{ false }}">
+                      <div style="position:absolute;left:0;right:0;top:0;height:var(--vit-cel-topo,0px);z-index:1;background:#FFFFFF;display:flex;align-items:center;justify-content:space-between;padding:0 9% 0 10%;font-family:Inter,sans-serif;font-weight:600;font-size:calc(var(--vit-esc-cel,0.4) * 14px);color:#0B1220">
+                        <span>9:41</span>
+                        <svg viewBox="0 0 34 12" fill="#0B1220" style="width:calc(var(--vit-esc-cel,0.4) * 46px);height:auto"><rect x="0" y="7" width="3" height="5" rx="1" /><rect x="4.5" y="5" width="3" height="7" rx="1" /><rect x="9" y="2.5" width="3" height="9.5" rx="1" /><rect x="18" y="1" width="14" height="10" rx="2.6" fill="none" stroke="#0B1220" stroke-width="1.3" /><rect x="19.8" y="2.8" width="10.4" height="6.4" rx="1.4" /><rect x="32.6" y="4" width="1.4" height="4" rx="0.7" /></svg>
+                      </div>
+                    </sc-if>
+                    <iframe ref="{{ vitCelFrame }}" src="{{ vitSrcCelular }}" title="Demonstração do sistema no celular" loading="lazy" tabindex="-1" aria-hidden="true" style="position:absolute;left:0;top:var(--vit-cel-topo,0px);width:390px;height:calc(var(--vit-cel-h,844) * 1px);border:0;display:block;transform-origin:0 0;transform:scale(var(--vit-esc-cel,0.4));pointer-events:none;background:#FFFFFF"></iframe>
+                  </div>
+                  <sc-if value="{{ celTemPng }}" hint-placeholder-val="{{ false }}">
+                    <img src="{{ celMoldura }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;z-index:2" />
+                  </sc-if>
+                  <sc-if value="{{ celSemPng }}" hint-placeholder-val="{{ true }}">
+                    <span style="position:absolute;left:50%;top:2.6%;width:29%;height:3.3%;transform:translateX(-50%);border-radius:999px;background:#000;z-index:2"></span>
+                  </sc-if>
+                </div>
+              </div>
+              </div>
+            </div>
+
+          </div>
+        </article>
+       </div>
+      </sc-if>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================================
+       VÍDEO EM DESTAQUE — bloco autocontido.
+       Conteúdo:     home/video-data.js
+       Liga/desliga: prop "showVideoDestaque" (ou ativo: false no data)
+       ONDE ELE APARECE: NÃO recorte nada. A home é uma coluna flex e cada
+       seção tem um "order" fixo. Basta trocar o campo "posicao" em
+       home/video-data.js (valores aceitos listados lá) que o bloco inteiro
+       muda de lugar — e o item do menu acompanha.
+       ============================================================================ -->
+  <sc-if value="{{ showVideoDestaque }}" hint-placeholder-val="{{ true }}">
+    <section id="video" style="{{ videoSectionStyle }}">
+      <div style="max-width:1180px;margin:0 auto;padding:0 var(--gutter,24px);display:grid;grid-template-columns:var(--video-cols);gap:clamp(20px,2.4vw,36px);align-items:center">
+
+        <div data-reveal="">
+          <span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#2563EB;font-weight:700">{{ videoEtiqueta }}</span>
+          <h2 style="font-family:Manrope,sans-serif;font-weight:800;font-size:clamp(25px,2.6vw,35px);line-height:1.06;letter-spacing:-0.035em;margin:14px 0 0;color:#0B2A6B">{{ videoTitulo1 }}<br /><span style="color:#3B82F6">+</span> {{ videoTitulo2 }}</h2>
+          <p style="margin:16px 0 0;font-size:14.5px;line-height:1.62;color:#3B5B8C">{{ videoDescricao }}</p>
+        </div>
+
+        <div data-reveal="" style="{{ videoMolduraStyle }}">
+          <sc-if value="{{ videoModoArquivo }}" hint-placeholder-val="{{ false }}">
+            <video src="{{ videoSrc }}" poster="{{ videoPoster }}" controls="" preload="metadata" playsinline="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></video>
+          </sc-if>
+          <sc-if value="{{ videoModoEmbed }}" hint-placeholder-val="{{ true }}">
+            <iframe src="{{ videoSrc }}" title="{{ videoTitulo }}" loading="lazy" scrolling="no" allow="autoplay; fullscreen" style="{{ videoIframeStyle }}"></iframe>
+          </sc-if>
+          <sc-if value="{{ videoModoVazio }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:24px;background:#EFF4FF">
+              <span style="width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(37,99,235,0.12);box-shadow:inset 0 0 0 1px rgba(37,99,235,0.3)">
+                <svg viewBox="0 0 24 24" fill="#2563EB" style="width:19px;height:19px"><path d="M9 6.5v11l9-5.5-9-5.5Z" /></svg>
+              </span>
+              <span style="font-size:13.5px;color:#3B5B8C;max-width:34ch;line-height:1.6">Nenhum vídeo definido. Preencha <span style="color:#0B2A6B;font-weight:600">arquivo</span> ou <span style="color:#0B2A6B;font-weight:600">embed</span> em <span style="color:#0B2A6B;font-weight:600">home/video-data.js</span>.</span>
+            </div>
+          </sc-if>
+        </div>
+
+      </div>
+    </section>
+  </sc-if>
+
+
+  <section id="ferramentas" data-fer="{{ ferAtivo }}" style="order:50;padding:clamp(28px,3vw,40px) 0;background:radial-gradient(60% 120% at 50% 50%,rgba(37,99,235,0.12),transparent 70%),linear-gradient(180deg,#050B16,#071528 50%,#050B16);border-top:1px solid rgba(59,130,246,0.16);border-bottom:1px solid rgba(59,130,246,0.16)">
+    <div style="max-width:1180px;margin:0 auto;padding:0 var(--gutter,24px);display:grid;gap:16px">
+      <div data-fer-linha="0" style="display:grid;grid-template-columns:var(--fer-cols);gap:8px 22px;align-items:center">
+        <span style="font-size:10.5px;letter-spacing:0.13em;text-transform:uppercase;color:#64748B;font-weight:600">Banco de dados</span>
+        <div style="overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)">
+          <div style="display:flex;gap:12px;width:max-content;animation:rsMarquee 34s linear infinite;animation-direction:normal" style-hover="animation-play-state:paused">
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>PostgreSQL</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>SQL Server</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>MySQL</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>Supabase</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>Firebase</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>MongoDB</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>PostgreSQL</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>SQL Server</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>MySQL</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>Supabase</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>Firebase</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>MongoDB</span>
+          </div>
+        </div>
+      </div>
+      <div data-fer-linha="1" style="display:grid;grid-template-columns:var(--fer-cols);gap:8px 22px;align-items:center">
+        <span style="font-size:10.5px;letter-spacing:0.13em;text-transform:uppercase;color:#64748B;font-weight:600">Dados &amp; BI</span>
+        <div style="overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)">
+          <div style="display:flex;gap:12px;width:max-content;animation:rsMarquee 38s linear infinite;animation-direction:reverse" style-hover="animation-play-state:paused">
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>Power BI</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>Python</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>Pandas</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>SQL</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>Excel avançado</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>DAX</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>Power BI</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>Python</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>Pandas</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>SQL</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>Excel avançado</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>DAX</span>
+          </div>
+        </div>
+      </div>
+      <div data-fer-linha="2" style="display:grid;grid-template-columns:var(--fer-cols);gap:8px 22px;align-items:center">
+        <span style="font-size:10.5px;letter-spacing:0.13em;text-transform:uppercase;color:#64748B;font-weight:600">Desenvolvimento</span>
+        <div style="overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)">
+          <div style="display:flex;gap:12px;width:max-content;animation:rsMarquee 36s linear infinite;animation-direction:normal" style-hover="animation-play-state:paused">
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>React</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>TypeScript</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>Node.js</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>JavaScript</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>Tailwind CSS</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>Next.js</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>React</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>TypeScript</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>Node.js</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>JavaScript</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>Tailwind CSS</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>Next.js</span>
+          </div>
+        </div>
+      </div>
+      <div data-fer-linha="3" style="display:grid;grid-template-columns:var(--fer-cols);gap:8px 22px;align-items:center">
+        <span style="font-size:10.5px;letter-spacing:0.13em;text-transform:uppercase;color:#64748B;font-weight:600">Integrações &amp; Cloud</span>
+        <div style="overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)">
+          <div style="display:flex;gap:12px;width:max-content;animation:rsMarquee 40s linear infinite;animation-direction:reverse" style-hover="animation-play-state:paused">
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>APIs REST</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>Webhooks</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>Docker</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>Git</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>Power Automate</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>Cloud</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>APIs REST</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>Webhooks</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>Docker</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>Git</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>Power Automate</span>
+            <span style="flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#CBD5E1;background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.14);border-radius:999px;padding:8px 15px;white-space:nowrap"><span style="width:5px;height:5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px 1px rgba(59,130,246,0.8)"></span>Cloud</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre" style="order:60;padding:clamp(48px,5.2vw,78px) 0">
+    <div style="max-width:1180px;margin:0 auto;padding:0 var(--gutter,24px);display:grid;grid-template-columns:var(--sobre-cols);column-gap:clamp(18px,3.6vw,56px);row-gap:var(--sobre-rgap,0px);align-items:start">
+      <div data-reveal="" style="grid-row:var(--sobre-foto-row,1 / span 2);position:relative;max-width:320px;width:100%">
+        <div style="position:absolute;inset:12% -8% -6% 8%;background:radial-gradient(closest-side,rgba(37,99,235,0.42),transparent 72%);filter:blur(40px);pointer-events:none"></div>
+        <img src="assets/rayllon.png" alt="Rayllon Soares" style="position:relative;width:100%;display:block;border-radius:var(--sobre-foto-raio,16px);border:1px solid rgba(237,230,214,0.12);box-shadow:0 40px 90px -40px rgba(0,0,0,0.9),inset 0 1px 0 rgba(237,230,214,0.1)" />
+      </div>
+      <div data-reveal="" style="align-self:var(--sobre-cab-align,start)">
+        <span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent2);font-weight:600">Sobre</span>
+        <h2 style="font-family:Manrope,sans-serif;font-weight:700;font-size:clamp(28px,3.2vw,42px);line-height:1.12;letter-spacing:-0.03em;margin:var(--sobre-h2-m,16px 0 24px)">Sobre mim</h2>
+        <span style="display:var(--sobre-sub,none);font-size:13.5px;line-height:1.5;color:#94A3B8;margin-top:6px">Rayllon Soares · Mestre em TI</span>
+      </div>
+      <div data-reveal="" style="grid-column:var(--sobre-corpo-col,2)">
+        <p style="margin:0 0 18px;font-size:16px;line-height:1.75;color:#CBD5E1;max-width:58ch">Sou Rayllon Soares, Mestre em Tecnologia da Informação, consultor e desenvolvedor de soluções digitais.</p>
+        <p style="margin:0 0 18px;font-size:16px;line-height:1.75;color:var(--muted);max-width:58ch">Atuo combinando tecnologia, dados e análise de negócios para desenvolver sistemas, dashboards, plataformas e automações voltadas à resolução de problemas reais.</p>
+        <p style="margin:0;font-size:16px;line-height:1.75;color:var(--muted);max-width:58ch">Meu trabalho parte da compreensão da necessidade para, então, estruturar e desenvolver a solução mais adequada.</p>
+        <div data-sobre-destaques="" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:16px;margin-top:32px;max-width:660px">
+          <div style="border-left:2px solid #2563EB;padding:2px 0 2px 14px"><strong style="display:block;font-family:Manrope,sans-serif;font-size:15.5px;font-weight:700;color:#F8FAFC">Mestre em TI</strong><span style="font-size:13px;line-height:1.5;color:#94A3B8">Tecnologia da Informação</span></div>
+          <div style="border-left:2px solid #2563EB;padding:2px 0 2px 14px"><strong style="display:block;font-family:Manrope,sans-serif;font-size:15.5px;font-weight:700;color:#F8FAFC">Dados e negócio</strong><span style="font-size:13px;line-height:1.5;color:#94A3B8">Da análise à decisão</span></div>
+          <div style="border-left:2px solid #2563EB;padding:2px 0 2px 14px"><strong style="display:block;font-family:Manrope,sans-serif;font-size:15.5px;font-weight:700;color:#F8FAFC">Ponta a ponta</strong><span style="font-size:13px;line-height:1.5;color:#94A3B8">Do diagnóstico à implantação</span></div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:32px">
+          <sc-if value="{{ temWhats }}" hint-placeholder-val="{{ true }}">
+            <a href="{{ whatsHref }}" target="_blank" rel="noreferrer" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#F8FAFC;font-size:14px;font-weight:600;padding:11px 20px;border-radius:9px;box-shadow:0 0 0 1px rgba(59,130,246,0.4),0 12px 34px -14px rgba(37,99,235,1)" style-hover="background:#1D4ED8;color:#F8FAFC">Vamos conversar</a>
+          </sc-if>
+          <sc-if value="{{ temLinkedin }}" hint-placeholder-val="{{ true }}">
+            <a href="{{ linkedinHref }}" target="_blank" rel="noreferrer" style="display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);color:#E2E8F0;font-size:14px;font-weight:600;padding:11px 18px;border-radius:9px" style-hover="border-color:rgba(59,130,246,0.6);color:#F8FAFC">LinkedIn<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px"><path d="M6 3.5h6.5V10M12.2 3.8 4 12" /></svg></a>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section id="atuacao" style="order:70;padding:0 0 clamp(48px,5.2vw,78px)">
+    <div data-reveal="" style="max-width:1180px;margin:0 auto;padding:0 var(--gutter,24px);display:grid;grid-template-columns:var(--fer-cols);gap:12px 22px;align-items:center">
+      <span style="font-size:10.5px;letter-spacing:0.13em;text-transform:uppercase;color:#64748B;font-weight:600">Áreas de atuação</span>
+      <div style="overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)">
+        <div style="display:flex;gap:10px;width:max-content;animation:rsMarquee 48s linear infinite" style-hover="animation-play-state:paused">
+          <span style="flex:none;display:inline-flex;align-items:center;gap:9px;font-size:13.5px;color:#94A3B8;border:1px solid rgba(148,163,184,0.12);border-radius:999px;padding:8px 16px 8px 11px;white-space:nowrap"><svg viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;flex:none"><rect x="3" y="4.5" width="18" height="13" rx="2.2"/><path d="M8.5 20.5h7M9.5 9 7.5 11l2 2M14.5 9l2 2-2 2"/></svg>Sistemas personalizados</span>
+          <span style="flex:none;display:inline-flex;align-items:center;gap:9px;font-size:13.5px;color:#94A3B8;border:1px solid rgba(148,163,184,0.12);border-radius:999px;padding:8px 16px 8px 11px;white-space:nowrap"><svg viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;flex:none"><rect x="3" y="3.5" width="18" height="17" rx="2.2"/><path d="M7.5 16.5V12M12 16.5V7.5M16.5 16.5v-3"/></svg>Dashboards e Business Intelligence</span>
+          <span style="flex:none;display:inline-flex;align-items:center;gap:9px;font-size:13.5px;color:#94A3B8;border:1px solid rgba(148,163,184,0.12);border-radius:999px;padding:8px 16px 8px 11px;white-space:nowrap"><svg viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;flex:none"><path d="M3.5 18.5 9 12l3.5 3L20.5 6"/><path d="M15.5 6h5v5"/><circle cx="9" cy="12" r="1.4"/><circle cx="12.5" cy="15" r="1.4"/></svg>Análise de dados</span>
+          <span style="flex:none;display:inline-flex;align-items:center;gap:9px;font-size:13.5px;color:#94A3B8;border:1px solid rgba(148,163,184,0.12);border-radius:999px;padding:8px 16px 8px 11px;white-space:nowrap"><svg viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;flex:none"><circle cx="12" cy="12" r="3.2"/><path d="M12 3v2.4M12 18.6V21M3 12h2.4M18.6 12H21M5.6 5.6l1.7 1.7M16.7 16.7l1.7 1.7M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7"/></svg>Automação de processos</span>
+          <span style="flex:none;display:inline-flex;align-items:center;gap:9px;font-size:13.5px;color:#94A3B8;border:1px solid rgba(148,163,184,0.12);border-radius:999px;padding:8px 16px 8px 11px;white-space:nowrap"><svg viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;flex:none"><circle cx="6" cy="6" r="2.6"/><circle cx="18" cy="18" r="2.6"/><circle cx="18" cy="6" r="2.6"/><path d="M8.4 7.4 15.6 16.6M8.6 6h6.8"/></svg>Integração de sistemas e APIs</span>
+          <span style="flex:none;display:inline-flex;align-items:center;gap:9px;font-size:13.5px;color:#94A3B8;border:1px solid rgba(148,163,184,0.12);border-radius:999px;padding:8px 16px 8px 11px;white-space:nowrap"><svg viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;flex:none"><path d="M12 3.5a6 6 0 0 1 3.4 10.9c-.5.4-.8 1-.8 1.6v.5h-5.2v-.5c0-.6-.3-1.2-.8-1.6A6 6 0 0 1 12 3.5Z"/><path d="M9.8 19.5h4.4M10.6 21.5h2.8"/></svg>Consultoria em soluções digitais</span>
+          <span style="flex:none;display:inline-flex;align-items:center;gap:9px;font-size:13.5px;color:#94A3B8;border:1px solid rgba(148,163,184,0.12);border-radius:999px;padding:8px 16px 8px 11px;white-space:nowrap"><svg viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;flex:none"><path d="M2.8 8.2 12 4l9.2 4.2L12 12.4 2.8 8.2Z"/><path d="M6.5 10.4v4.4c0 1.4 2.5 2.6 5.5 2.6s5.5-1.2 5.5-2.6v-4.4M20.4 9.4V15"/></svg>Plataformas e soluções educacionais</span>
+          <span style="flex:none;display:inline-flex;align-items:center;gap:9px;font-size:13.5px;color:#94A3B8;border:1px solid rgba(148,163,184,0.12);border-radius:999px;padding:8px 16px 8px 11px;white-space:nowrap"><svg viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;flex:none"><rect x="3" y="4.5" width="18" height="13" rx="2.2"/><path d="M8.5 20.5h7M9.5 9 7.5 11l2 2M14.5 9l2 2-2 2"/></svg>Sistemas personalizados</span>
+          <span style="flex:none;display:inline-flex;align-items:center;gap:9px;font-size:13.5px;color:#94A3B8;border:1px solid rgba(148,163,184,0.12);border-radius:999px;padding:8px 16px 8px 11px;white-space:nowrap"><svg viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;flex:none"><rect x="3" y="3.5" width="18" height="17" rx="2.2"/><path d="M7.5 16.5V12M12 16.5V7.5M16.5 16.5v-3"/></svg>Dashboards e Business Intelligence</span>
+          <span style="flex:none;display:inline-flex;align-items:center;gap:9px;font-size:13.5px;color:#94A3B8;border:1px solid rgba(148,163,184,0.12);border-radius:999px;padding:8px 16px 8px 11px;white-space:nowrap"><svg viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;flex:none"><path d="M3.5 18.5 9 12l3.5 3L20.5 6"/><path d="M15.5 6h5v5"/><circle cx="9" cy="12" r="1.4"/><circle cx="12.5" cy="15" r="1.4"/></svg>Análise de dados</span>
+          <span style="flex:none;display:inline-flex;align-items:center;gap:9px;font-size:13.5px;color:#94A3B8;border:1px solid rgba(148,163,184,0.12);border-radius:999px;padding:8px 16px 8px 11px;white-space:nowrap"><svg viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;flex:none"><circle cx="12" cy="12" r="3.2"/><path d="M12 3v2.4M12 18.6V21M3 12h2.4M18.6 12H21M5.6 5.6l1.7 1.7M16.7 16.7l1.7 1.7M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7"/></svg>Automação de processos</span>
+          <span style="flex:none;display:inline-flex;align-items:center;gap:9px;font-size:13.5px;color:#94A3B8;border:1px solid rgba(148,163,184,0.12);border-radius:999px;padding:8px 16px 8px 11px;white-space:nowrap"><svg viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;flex:none"><circle cx="6" cy="6" r="2.6"/><circle cx="18" cy="18" r="2.6"/><circle cx="18" cy="6" r="2.6"/><path d="M8.4 7.4 15.6 16.6M8.6 6h6.8"/></svg>Integração de sistemas e APIs</span>
+          <span style="flex:none;display:inline-flex;align-items:center;gap:9px;font-size:13.5px;color:#94A3B8;border:1px solid rgba(148,163,184,0.12);border-radius:999px;padding:8px 16px 8px 11px;white-space:nowrap"><svg viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;flex:none"><path d="M12 3.5a6 6 0 0 1 3.4 10.9c-.5.4-.8 1-.8 1.6v.5h-5.2v-.5c0-.6-.3-1.2-.8-1.6A6 6 0 0 1 12 3.5Z"/><path d="M9.8 19.5h4.4M10.6 21.5h2.8"/></svg>Consultoria em soluções digitais</span>
+          <span style="flex:none;display:inline-flex;align-items:center;gap:9px;font-size:13.5px;color:#94A3B8;border:1px solid rgba(148,163,184,0.12);border-radius:999px;padding:8px 16px 8px 11px;white-space:nowrap"><svg viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;flex:none"><path d="M2.8 8.2 12 4l9.2 4.2L12 12.4 2.8 8.2Z"/><path d="M6.5 10.4v4.4c0 1.4 2.5 2.6 5.5 2.6s5.5-1.2 5.5-2.6v-4.4M20.4 9.4V15"/></svg>Plataformas e soluções educacionais</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato" style="order:80;padding:clamp(54px,5.6vw,86px) 0;border-top:1px solid var(--line);position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background:radial-gradient(780px 400px at 50% 118%,rgba(37,99,235,0.22),transparent 70%);pointer-events:none"></div>
+    <div data-reveal="" style="position:relative;max-width:820px;margin:0 auto;padding:0 var(--gutter,24px);text-align:center">
+      <h2 style="font-family:Manrope,sans-serif;font-weight:700;font-size:clamp(28px,3.6vw,46px);line-height:1.12;letter-spacing:-0.03em;margin:0 auto;max-width:24ch">Vamos transformar uma necessidade em uma solução digital?</h2>
+      <p style="margin:24px auto 0;font-size:16.5px;line-height:1.7;color:var(--muted);max-width:60ch">Vamos conversar sobre seu projeto, processo ou desafio e avaliar como a tecnologia pode gerar mais eficiência, informação e resultados.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:38px">
+        <a href="{{ whatsHref }}" target="_blank" rel="noreferrer" style="background:var(--accent);color:#F8FAFC;font-size:14.5px;font-weight:600;padding:14px 28px;border-radius:9px;box-shadow:0 0 0 1px rgba(59,130,246,0.4),0 16px 44px -16px rgba(37,99,235,1)" style-hover="background:#1D4ED8;color:#F8FAFC">Agendar conversa</a>
+        <a href="{{ emailHref }}" style="border:1px solid var(--line);color:#F8FAFC;font-size:14.5px;font-weight:600;padding:14px 28px;border-radius:9px" style-hover="border-color:rgba(59,130,246,0.55);color:#F8FAFC">Enviar mensagem</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="order:90;border-top:1px solid var(--line);background:rgba(7,20,38,0.8);padding:44px 0 34px">
+    <div style="max-width:1180px;margin:0 auto;padding:0 var(--gutter,24px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:36px;align-items:start">
+      <div>
+        <a href="#inicio" style="display:inline-flex;align-items:center;gap:12px">
+          <img src="uploads/logo.png" alt="Rayllon Soares" style="height:46px;width:auto;display:block;filter:drop-shadow(0 0 14px rgba(59,130,246,0.35))" />
+          <span style="display:flex;flex-direction:column;line-height:1">
+            <span style="font-family:Manrope,sans-serif;font-weight:700;font-size:18px;letter-spacing:-0.02em;color:#F8FAFC">Rayllon Soares</span>
+            <span style="font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent2);font-weight:600;margin-top:6px">Estratégia, Dados e Soluções</span>
+          </span>
+        </a>
+        <p style="margin:18px 0 0;font-size:14px;line-height:1.6;color:var(--muted)">Mestre em Tecnologia da Informação<br />Consultor &amp; Desenvolvedor de Soluções Digitais</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0;font-size:14px">
+        <span style="font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;color:#64748B;font-weight:600;margin-bottom:4px">Navegação</span>
+        <a href="#solucoes" style="color:#94A3B8;display:inline-flex;align-items:center;min-height:40px" style-hover="color:#F8FAFC">Soluções</a>
+        <a href="#processo" style="color:#94A3B8;display:inline-flex;align-items:center;min-height:40px" style-hover="color:#F8FAFC">Processo</a>
+        <a href="#projetos" style="color:#94A3B8;display:inline-flex;align-items:center;min-height:40px" style-hover="color:#F8FAFC">Projetos</a>
+        <a href="#sobre" style="color:#94A3B8;display:inline-flex;align-items:center;min-height:40px" style-hover="color:#F8FAFC">Sobre</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0;font-size:14px">
+        <span style="font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;color:#64748B;font-weight:600;margin-bottom:4px">Contato</span>
+        <sc-if value="{{ temLinkedin }}" hint-placeholder-val="{{ true }}"><a href="{{ linkedinHref }}" target="_blank" rel="noreferrer" style="color:#94A3B8;display:inline-flex;align-items:center;min-height:40px" style-hover="color:#F8FAFC">LinkedIn</a></sc-if>
+        <sc-if value="{{ temGithub }}" hint-placeholder-val="{{ false }}"><a href="{{ githubHref }}" target="_blank" rel="noreferrer" style="color:#94A3B8;display:inline-flex;align-items:center;min-height:40px" style-hover="color:#F8FAFC">GitHub</a></sc-if>
+        <sc-if value="{{ temEmail }}" hint-placeholder-val="{{ true }}"><a href="{{ emailHref }}" style="color:#94A3B8;display:inline-flex;align-items:center;min-height:40px" style-hover="color:#F8FAFC">E-mail</a></sc-if>
+        <sc-if value="{{ temWhats }}" hint-placeholder-val="{{ true }}"><a href="{{ whatsHref }}" target="_blank" rel="noreferrer" style="color:#94A3B8;display:inline-flex;align-items:center;min-height:40px" style-hover="color:#F8FAFC">WhatsApp</a></sc-if>
+      </div>
+    </div>
+    <div style="max-width:1180px;margin:44px auto 0;padding:20px 24px 0;border-top:1px solid var(--line);font-size:12.5px;color:#64748B">© 2026 Rayllon Soares. Todos os direitos reservados.</div>
+  </footer>
+
+  <!-- ============================================================================
+       BOTÃO FLUTUANTE DO WHATSAPP
+       Número, mensagem e liga/desliga: home/contato-data.js
+       ============================================================================ -->
+  <sc-if value="{{ mostraZap }}" hint-placeholder-val="{{ true }}">
+    <a href="{{ whatsHref }}" target="_blank" rel="noreferrer" data-zap="" aria-label="Conversar no WhatsApp" style="position:fixed;right:clamp(16px,2.2vw,28px);bottom:clamp(16px,2.2vw,28px);z-index:90;display:inline-flex;align-items:center;padding:11px;border-radius:999px;background:#2563EB;color:#FFFFFF;text-decoration:none;opacity:0.55;box-shadow:0 8px 22px -12px rgba(37,99,235,0.6);transition:opacity .32s,transform .32s cubic-bezier(.22,1,.36,1),box-shadow .32s" style-hover="opacity:1;transform:translateY(-3px);box-shadow:0 18px 40px -10px rgba(37,99,235,0.95),0 0 0 1px rgba(255,255,255,0.24);color:#FFFFFF">
+      <span aria-hidden="true" style="position:absolute;inset:0;border-radius:999px;background:#3B82F6;animation:rsZapHalo 7s ease-out infinite;pointer-events:none;z-index:-1"></span>
+      <svg viewBox="0 0 32 32" fill="currentColor" style="width:24px;height:24px;flex:none;display:block">
+        <path d="M16.02 3.2C8.96 3.2 3.2 8.95 3.2 16.01c0 2.26.6 4.47 1.73 6.42L3.1 28.9l6.63-1.79a12.8 12.8 0 0 0 6.29 1.64h.01c7.06 0 12.81-5.75 12.81-12.81 0-3.42-1.33-6.64-3.75-9.06a12.73 12.73 0 0 0-9.07-3.68Zm0 23.32h-.01c-1.9 0-3.77-.51-5.4-1.48l-.39-.23-4.02 1.08 1.09-3.93-.25-.4a10.6 10.6 0 0 1-1.63-5.66c0-5.87 4.78-10.65 10.66-10.65 2.85 0 5.52 1.11 7.53 3.13a10.58 10.58 0 0 1 3.12 7.53c0 5.87-4.78 10.61-10.7 10.61Zm5.85-7.94c-.32-.16-1.9-.94-2.19-1.04-.29-.11-.5-.16-.72.16-.21.32-.82 1.04-1.01 1.25-.19.21-.37.24-.69.08-.32-.16-1.36-.5-2.58-1.6-.95-.85-1.6-1.9-1.79-2.22-.19-.32-.02-.49.14-.65.15-.14.32-.37.48-.56.16-.19.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.72-1.74-.99-2.38-.26-.62-.52-.54-.72-.55l-.61-.01c-.21 0-.56.08-.85.4-.29.32-1.11 1.09-1.11 2.65s1.14 3.08 1.3 3.29c.16.21 2.25 3.43 5.45 4.81.76.33 1.36.53 1.82.67.77.25 1.46.21 2.01.13.61-.09 1.9-.78 2.16-1.53.27-.75.27-1.4.19-1.53-.08-.13-.29-.21-.61-.37Z" />
+      </svg>
+      <span data-zap-rotulo="" style="max-width:0;overflow:hidden;white-space:nowrap;opacity:0;font-size:14.5px;font-weight:600;letter-spacing:-0.01em;transition:max-width .35s cubic-bezier(.22,1,.36,1),opacity .3s,margin-left .35s">Fale comigo</span>
+    </a>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;accentColor&quot;: {&quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;#2563EB&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;options&quot;: [&quot;#2563EB&quot;, &quot;#3B82F6&quot;, &quot;#0EA5E9&quot;, &quot;#6366F1&quot;], &quot;section&quot;: &quot;Aparência&quot;},
+  &quot;showHeroMockup&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Seções&quot;},
+  &quot;showVideoDestaque&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Seções&quot;}
+}">
+const RS_SERIES = {
+  Mensal: [40, 54, 47, 62, 56, 70, 66, 78, 74, 86, 82, 95],
+  Trimestre: [28, 42, 38, 56, 50, 64, 72, 68, 80, 76, 88, 93],
+  Anual: [18, 32, 28, 46, 42, 58, 54, 70, 66, 82, 78, 91],
+};
+const RS_BARS = {
+  Mensal: [62, 78, 54, 88, 70, 46, 82, 58],
+  Trimestre: [48, 66, 72, 58, 84, 52, 74, 64],
+  Anual: [70, 52, 84, 62, 48, 78, 56, 88],
+};
+const RS_LEGENDA = {
+  Mensal: "últimos 12 meses",
+  Trimestre: "últimos 12 trimestres",
+  Anual: "últimos 12 anos",
+};
+
+// Serviços da seção #solucoes. O card renderiza "nome", "descricao" e
+// "paths" (o ícone). "resumo" e "entregas" ficam guardados aqui para um
+// possível detalhamento futuro — hoje não aparecem em lugar nenhum.
+const RS_SERVICOS = [
+  {
+    nome: "Sistemas Personalizados",
+    resumo: "Aplicações sob medida",
+    descricao:
+      "Construímos sistemas a partir da operação real do cliente: cadastros, fluxos de aprovação, controles internos e relatórios, no lugar de adaptar o processo a um software genérico.",
+    entregas: ["Levantamento de requisitos", "Modelagem de dados", "Interface web responsiva", "Perfis e permissões de acesso"],
+    paths: ["M2.6 4.2h18.8v13.6H2.6z", "M2.6 8.4h18.8M8.4 20.6h7.2"],
+  },
+  {
+    nome: "Dashboards & BI",
+    resumo: "Indicadores para decisão",
+    descricao:
+      "Reunimos os indicadores da operação em uma leitura única, com filtros por período e área, para acompanhar o que está acontecendo sem depender de planilhas soltas.",
+    entregas: ["Definição de indicadores", "Modelo de dados e cálculos", "Painéis interativos", "Publicação e atualização automática"],
+    paths: ["M2.6 3.4h18.8v17.2H2.6z", "M6.6 17V12.6M10.8 17V9.6M15 17v-3M19 17v-6"],
+  },
+  {
+    nome: "Dados & Analytics",
+    resumo: "Da base bruta à informação",
+    descricao:
+      "Tratamos, organizamos e analisamos bases de dados: limpeza, padronização, cruzamento de fontes e leitura dos resultados para responder perguntas específicas do negócio.",
+    entregas: ["Coleta e limpeza de dados", "Integração de múltiplas fontes", "Análises exploratórias", "Relatórios e documentação"],
+    paths: ["M3 17.6 8.6 11l3.6 3.2L20.6 5.8", "M15.8 5.8h4.8v4.8M3 20.6h18"],
+  },
+  {
+    nome: "Automação & Integrações",
+    resumo: "Menos trabalho manual",
+    descricao:
+      "Automatizamos rotinas repetitivas e conectamos sistemas por API, eliminando digitação duplicada, planilhas intermediárias e retrabalho entre áreas.",
+    entregas: ["Mapeamento do fluxo atual", "Rotinas automatizadas", "Integrações via API e webhooks", "Monitoramento de execução"],
+    paths: ["M12 8.9a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2Z", "M12 3.4v2.3M12 18.3v2.3M3.4 12h2.3M18.3 12h2.3M5.9 5.9l1.6 1.6M16.5 16.5l1.6 1.6M18.1 5.9l-1.6 1.6M7.5 16.5l-1.6 1.6"],
+  },
+  {
+    nome: "Consultoria Digital",
+    resumo: "Diagnóstico antes do código",
+    descricao:
+      "Analisamos o processo e o problema antes de qualquer desenvolvimento: onde estão os gargalos, o que vale automatizar, o que comprar e o que construir, com escopo e prioridades definidos.",
+    entregas: ["Diagnóstico do processo", "Definição de escopo", "Escolha da abordagem técnica", "Plano de implantação"],
+    paths: ["M12 3.4a6.1 6.1 0 0 1 3.5 11.1c-.6.4-.9 1-.9 1.7v.4H9.4v-.4c0-.7-.3-1.3-.9-1.7A6.1 6.1 0 0 1 12 3.4Z", "M9.8 19.4h4.4M10.7 21.4h2.6"],
+  },
+  {
+    nome: "Soluções Educacionais",
+    resumo: "Tecnologia aplicada ao ensino",
+    descricao:
+      "Desenvolvemos plataformas e ferramentas digitais para contextos de ensino e formação: organização de conteúdo, acompanhamento de turmas e apoio à gestão acadêmica.",
+    entregas: ["Estrutura de conteúdo e trilhas", "Área do aluno e do professor", "Acompanhamento de progresso", "Relatórios acadêmicos"],
+    paths: ["M2.6 8.2 12 3.8l9.4 4.4L12 12.6 2.6 8.2Z", "M6.4 10.4v4.6c0 1.5 2.5 2.7 5.6 2.7s5.6-1.2 5.6-2.7v-4.6M20.6 9.3v6.2"],
+  },
+];
+
+// Ordem fixa das seções da home (a home é uma coluna flex).
+//   0 header | 10 início | 20 soluções | 30 processo | 40 projetos
+//   50 ferramentas | 60 sobre | 70 atuação | 80 contato | 90 rodapé
+// O bloco de vídeo entra em um dos "vãos" abaixo, conforme o campo
+// "posicao" de home/video-data.js.
+// Palavra que gira no título do hero, com efeito de decodificação.
+const RS_PALAVRAS = ["transformar", "integrar", "estruturar"];
+const RS_RUIDO = "▓▒░#%&/\|<>*+=-_~^:;".split("");
+const RS_PAUSA_PALAVRA = 2600;
+
+const RS_MOVIMENTO_REDUZIDO =
+  typeof window !== "undefined" && !!window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// Etapas da seção #processo. A etapa ativa avança sozinha (1 → 2 → 3...)
+// enquanto a seção está na tela; clicar escolhe uma.
+const RS_METODO = [
+  ["Diagnóstico", "Entendimento do processo, das pessoas envolvidas e do problema a ser resolvido."],
+  ["Planejamento", "Definição de escopo, prioridades, arquitetura e critérios de sucesso."],
+  ["Desenvolvimento", "Construção da solução em ciclos curtos, com validação a cada entrega."],
+  ["Implantação", "Colocação em uso, ajustes finos e acompanhamento dos primeiros ciclos."],
+  ["Evolução", "Melhorias contínuas conforme a operação amadurece e novas necessidades surgem."],
+];
+const RS_METODO_MS = 2600;
+
+const RS_VIDEO_POSICOES = {
+  "depois-do-hero": 15,
+  "depois-de-solucoes": 25,
+  "depois-do-processo": 35,
+  "depois-de-projetos": 45,
+  "depois-de-ferramentas": 55,
+  "depois-de-sobre": 65,
+  "depois-de-atuacao": 75,
+};
+
+class Component extends DCLogic {
+  state = { projetos: [], video: null, contato: null, menuAberto: false, ferAtivo: 0, metodoAtivo: 0, vitIdx: 0, vitPasso: 0, vitTocando: !RS_MOVIMENTO_REDUZIDO, vitIniciado: false, trilho: { left: 0, visivel: 0, total: 0 }, arrastando: false, periodo: "Mensal", kpi: 0, barHover: -1, navHover: -1 };
+  railRef = React.createRef();
+  barraRef = React.createRef();
+  palavraRef = React.createRef();
+  vitRef = React.createRef();
+  metodoRef = React.createRef();
+  metodoGridRef = React.createRef();
+  vitDeskRef = React.createRef();
+  vitCelRef = React.createRef();
+  vitDeskFrame = React.createRef();
+  vitCelFrame = React.createRef();
+  vitPalcoRef = React.createRef();
+  vitAreaRef = React.createRef();
+  // Isola a sincronização entre os dois iframes desta vitrine.
+  vitCanal = Math.random().toString(36).slice(2, 10);
+  vitProntos = { desktop: false, celular: false };
+  vitFins = {};
+  vitVisivel = false;
+
+  // Troca a palavra do título letra a letra: cada caractere passa um tempo
+  // aleatório como ruído antes de assentar. Escreve direto no DOM via ref —
+  // o span nasce vazio no template, então o React não disputa o conteúdo e
+  // a página inteira não re-renderiza a 60fps.
+  embaralhaPalavra(destino, aoTerminar) {
+    const el = this.palavraRef.current;
+    if (!el) return;
+    const origem = this.palavraAtual || "";
+    const n = Math.max(origem.length, destino.length);
+    const fila = [];
+    for (let i = 0; i < n; i++) {
+      const inicio = Math.floor(Math.random() * 14);
+      fila.push({
+        de: origem[i] || "",
+        para: destino[i] || "",
+        inicio,
+        fim: inicio + 9 + Math.floor(Math.random() * 15),
+        ch: "",
+      });
+    }
+    let quadro = 0;
+    const passo = () => {
+      let html = "";
+      let prontos = 0;
+      for (const q of fila) {
+        if (quadro >= q.fim) {
+          prontos++;
+          html += q.para;
+        } else if (quadro >= q.inicio) {
+          if (!q.ch || Math.random() < 0.3) {
+            q.ch = RS_RUIDO[Math.floor(Math.random() * RS_RUIDO.length)];
+          }
+          html += '<span style="color:#93C5FD;opacity:0.7">' + q.ch + "</span>";
+        } else {
+          html += q.de;
+        }
+      }
+      el.innerHTML = html;
+      if (prontos === fila.length) {
+        this.palavraAtual = destino;
+        if (aoTerminar) aoTerminar();
+        return;
+      }
+      quadro++;
+      this.rafPalavra = requestAnimationFrame(passo);
+    };
+    passo();
+  }
+
+  iniciaPalavras() {
+    const el = this.palavraRef.current;
+    if (!el) return;
+    this.palavraAtual = RS_PALAVRAS[0];
+    el.textContent = RS_PALAVRAS[0];
+
+    const parado = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (parado) return;
+
+    let i = 0;
+    const proxima = () => {
+      i = (i + 1) % RS_PALAVRAS.length;
+      this.embaralhaPalavra(RS_PALAVRAS[i], () => {
+        this.timerPalavra = setTimeout(proxima, RS_PAUSA_PALAVRA);
+      });
+    };
+    this.timerPalavra = setTimeout(proxima, RS_PAUSA_PALAVRA);
+  }
+
+  // Metodologia e ferramentas avançam sozinhas enquanto estão na tela.
+  iniciaRotacoes() {
+    const parado = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    this.visiveis = {};
+    if ("IntersectionObserver" in window) {
+      this.obsRotacao = new IntersectionObserver((entradas) => {
+        entradas.forEach((en) => { this.visiveis[en.target.dataset.rot] = en.isIntersecting; });
+      }, { threshold: 0.35 });
+      [[this.metodoRef, "metodo"]].forEach(([ref, nome]) => {
+        if (ref.current) { ref.current.dataset.rot = nome; this.obsRotacao.observe(ref.current); }
+      });
+    }
+    if (parado) return;
+    this.metodoTimer = setInterval(() => {
+      if (this.visiveis.metodo) this.escolheEtapa((this.state.metodoAtivo + 1) % RS_METODO.length, true);
+    }, RS_METODO_MS);
+    this.ferTimer = setInterval(() => {
+      if (window.innerWidth <= 760) this.setState((st) => ({ ferAtivo: (st.ferAtivo + 1) % 4 }));
+    }, 4200);
+  }
+
+  escolheEtapa(i, automatico) {
+    this.setState({ metodoAtivo: i });
+    if (!automatico) {
+      clearInterval(this.metodoTimer);
+      this.metodoTimer = setInterval(() => {
+        if (this.visiveis && this.visiveis.metodo) this.escolheEtapa((this.state.metodoAtivo + 1) % RS_METODO.length, true);
+      }, RS_METODO_MS);
+    }
+  }
+
+  // Mede o trilho para dimensionar o polegar da barra.
+  medeTrilho() {
+    const t = this.railRef.current;
+    if (!t) return;
+    const novo = { left: t.scrollLeft, visivel: t.clientWidth, total: t.scrollWidth };
+    const a = this.state.trilho;
+    if (a.left !== novo.left || a.visivel !== novo.visivel || a.total !== novo.total) {
+      this.setState({ trilho: novo });
+    }
+  }
+
+  aoRolarTrilho() {
+    this.medeTrilho();
+  }
+
+  // Arrasta a barra. Pegando no polegar, o movimento é relativo (não pula);
+  // clicando na pista vazia, o polegar centraliza no ponto e segue o ponteiro.
+  iniciaArrasto(e) {
+    const trilho = this.railRef.current;
+    const barra = this.barraRef.current;
+    if (!trilho || !barra) return;
+    const maxScroll = trilho.scrollWidth - trilho.clientWidth;
+    if (maxScroll <= 0) return;
+
+    const caixa = barra.getBoundingClientRect();
+    const proporcao = trilho.clientWidth / trilho.scrollWidth;
+    const largPolegar = Math.max(caixa.width * proporcao, 44);
+    const curso = caixa.width - largPolegar;
+    const polegarX = curso > 0 ? (trilho.scrollLeft / maxScroll) * curso : 0;
+
+    const x = e.clientX - caixa.left;
+    const dentro = x >= polegarX && x <= polegarX + largPolegar;
+    const pega = dentro ? x - polegarX : largPolegar / 2;
+
+    const aplica = (clientX) => {
+      const alvo = clientX - caixa.left - pega;
+      const r = curso > 0 ? Math.max(0, Math.min(1, alvo / curso)) : 0;
+      trilho.scrollLeft = r * maxScroll;
+    };
+
+    const mover = (ev) => aplica(ev.clientX);
+    const solta = () => {
+      window.removeEventListener("pointermove", mover);
+      window.removeEventListener("pointerup", solta);
+      document.body.style.userSelect = "";
+      this.setState({ arrastando: false });
+    };
+
+    e.preventDefault();
+    if (!dentro) aplica(e.clientX);
+    window.addEventListener("pointermove", mover);
+    window.addEventListener("pointerup", solta);
+    document.body.style.userSelect = "none";
+    this.setState({ arrastando: true });
+  }
+
+  // Monta os destinos a partir de home/contato-data.js.
+  mapaContato() {
+    const c = this.state.contato || {};
+    const zap = (c.whatsapp || "").replace(/\D/g, "");
+    const href = zap
+      ? "https://wa.me/" + zap + (c.mensagem ? "?text=" + encodeURIComponent(c.mensagem) : "")
+      : "";
+    return {
+      whatsHref: href,
+      temWhats: !!href,
+      mostraZap: !!href && c.botaoFlutuante !== false,
+      emailHref: c.email ? "mailto:" + c.email : "",
+      temEmail: !!c.email,
+      linkedinHref: c.linkedin || "",
+      temLinkedin: !!c.linkedin,
+      githubHref: c.github || "",
+      temGithub: !!c.github,
+    };
+  }
+
+  // Geometria da barra: largura do polegar = fatia visível do trilho;
+  // posição = quanto já rolou dentro do curso disponível.
+  mapaBarra() {
+    const t = this.state.trilho;
+    const maxScroll = Math.max(0, t.total - t.visivel);
+    const arrastando = this.state.arrastando;
+    const largura = t.total > 0 ? Math.max(12, Math.min(100, (t.visivel / t.total) * 100)) : 100;
+    const r = maxScroll > 0 ? Math.max(0, Math.min(1, t.left / maxScroll)) : 0;
+    return {
+      barraVisivel: maxScroll > 1,
+      barraStyle:
+        "position:relative;margin:20px auto 0;height:8px;border-radius:999px;" +
+        "background:rgba(148,163,184,0.13);box-shadow:inset 0 0 0 1px rgba(148,163,184,0.09);" +
+        "touch-action:none;cursor:" + (arrastando ? "grabbing" : "pointer"),
+      polegarStyle:
+        "position:absolute;top:0;height:100%;border-radius:999px;pointer-events:none;" +
+        "background:linear-gradient(90deg,#60A5FA,#2563EB);" +
+        "box-shadow:0 0 14px 1px rgba(59,130,246,0.85)" +
+        (arrastando ? ",0 0 26px 4px rgba(37,99,235,0.7)" : "") + ";" +
+        "transition:box-shadow .25s;width:" + largura.toFixed(2) + "%;" +
+        "left:" + (r * (100 - largura)).toFixed(2) + "%",
+    };
+  }
+
+  // ==========================================================================
+  // VITRINE
+  // Projetos com campo "vitrine" em projects-data.js viram slides do bloco
+  // grande da seção Projetos. Só o slide visível tem telas carregadas.
+  // A home só conduz: manda { tipo: "vitrine:passo", passo } aos dois iframes,
+  // espera os dois responderem { tipo: "fim" } e avança. O que acontece em
+  // cada passo é roteiro do próprio projeto. Ao fim do último passo, passa
+  // para o próximo projeto. Fora da tela, termina o passo e espera.
+  // ==========================================================================
+  vitrines() {
+    return (this.state.projetos || []).filter((p) => p && p.vitrine);
+  }
+
+  vitrineProjeto() {
+    const lista = this.vitrines();
+    return lista.length ? lista[Math.min(this.state.vitIdx, lista.length - 1)] : null;
+  }
+
+  vitEnviar(msg) {
+    [this.vitDeskFrame, this.vitCelFrame].forEach((r) => {
+      const w = r.current && r.current.contentWindow;
+      if (w) w.postMessage(msg, "*");
+    });
+  }
+
+  vitIniciar(i) {
+    const proj = this.vitrineProjeto();
+    if (!proj) return;
+    const passos = proj.vitrine.passos || [];
+    if (!passos.length) return;
+    const passo = Math.max(0, Math.min(i, passos.length - 1));
+    clearTimeout(this.vitTimer);
+    clearTimeout(this.vitLimite);
+    this.vitFins = {};
+    this.vitFeito = false;
+    this.vitPendente = false;
+    this.vitInicio = performance.now();
+    this.vitDuracao = (passos[passo].segundos || 14) * 1000;
+    this.setState({ vitPasso: passo, vitIniciado: true });
+    this.vitEnviar({ tipo: "vitrine:passo", passo });
+    // Rede de segurança: se uma das telas não responder, segue mesmo assim.
+    this.vitLimite = setTimeout(() => this.vitConcluir(passo), this.vitDuracao * 2 + 8000);
+  }
+
+  // Depois do último passo, o próximo projeto; com um só, recomeça.
+  vitSeguir() {
+    const proj = this.vitrineProjeto();
+    const total = (proj && proj.vitrine.passos.length) || 0;
+    if (this.state.vitPasso + 1 < total) this.vitIniciar(this.state.vitPasso + 1);
+    else if (this.vitrines().length > 1) this.vitTrocar(1);
+    else this.vitIniciar(0);
+  }
+
+  vitConcluir(passo) {
+    if (passo !== this.state.vitPasso || this.vitFeito) return;
+    clearTimeout(this.vitLimite);
+    this.vitFeito = true;
+    if (!this.state.vitTocando) return;
+    if (!this.vitVisivel) {
+      this.vitPendente = true;
+      return;
+    }
+    this.vitTimer = setTimeout(() => this.vitSeguir(), 1700);
+  }
+
+  vitTalvezComecar() {
+    if (this.state.vitIniciado || !this.state.vitTocando) return;
+    if (this.vitProntos.desktop && this.vitProntos.celular && this.vitVisivel) this.vitIniciar(0);
+  }
+
+  vitAoMensagem(e) {
+    const d = e.data;
+    if (!d || d.origem !== "vitrine") return;
+    const nossas = [this.vitDeskFrame, this.vitCelFrame].some((r) => r.current && r.current.contentWindow === e.source);
+    if (!nossas) return;
+    if (d.tipo === "pronto") {
+      this.vitProntos[d.tela] = true;
+      this.vitTalvezComecar();
+    }
+    if (d.tipo === "fim" && d.passo === this.state.vitPasso) {
+      this.vitFins[d.tela] = true;
+      if (this.vitFins.desktop && this.vitFins.celular) this.vitConcluir(d.passo);
+    }
+  }
+
+  vitAlternar() {
+    if (this.state.vitTocando) {
+      this.setState({ vitTocando: false });
+      return;
+    }
+    this.setState({ vitTocando: true }, () => {
+      if (!this.state.vitIniciado) this.vitTalvezComecar();
+      else if (this.vitFeito) this.vitSeguir();
+    });
+  }
+
+  // Troca de projeto: as telas recarregam com o novo src e avisam "pronto".
+  vitTrocar(delta) {
+    const lista = this.vitrines();
+    if (lista.length < 2) return;
+    const idx = (this.state.vitIdx + delta + lista.length) % lista.length;
+    clearTimeout(this.vitTimer);
+    clearTimeout(this.vitLimite);
+    this.vitProntos = { desktop: false, celular: false };
+    this.vitFins = {};
+    this.vitFeito = false;
+    this.vitPendente = false;
+    this.setState({ vitIdx: idx, vitPasso: 0, vitIniciado: false }, () => this.vitMedir());
+    const palco = this.vitPalcoRef.current;
+    if (palco) {
+      palco.style.animation = "none";
+      void palco.offsetWidth;
+      palco.style.animation = (delta < 0 ? "rsSlideDir" : "rsSlideEsq") + " .55s cubic-bezier(.22,1,.36,1) both";
+    }
+  }
+
+  // Escala das telas: o app roda em 1280x800 e 390xN e é reduzido por
+  // transform. Escreve variáveis CSS direto no DOM, sem re-render.
+  vitMedir() {
+    const raiz = this.vitRef.current;
+    const area = this.vitAreaRef.current;
+    if (raiz && area && area.clientWidth) {
+      const projAtual = this.vitrineProjeto();
+      const celCfg = (projAtual && projAtual.vitrine.celular) || {};
+      const [pw, ph] = String((celCfg.moldura && celCfg.proporcao) || "418 / 872").split("/").map(Number);
+      const razao = pw && ph ? pw / ph : 418 / 872;
+      const largura = area.clientWidth;
+      const vao = largura < 700 ? 10 : 24;
+      const barraNav = 34;
+      const alturaMax = Math.max(300, window.innerHeight - 300);
+      const desk = Math.min((largura - vao - razao * barraNav) / (1 + razao * 0.625), (alturaMax - barraNav) / 0.625);
+      const altura = desk * 0.625 + barraNav;
+      raiz.style.setProperty("--vit-gap", vao + "px");
+      raiz.style.setProperty("--vit-desk-w", Math.floor(desk) + "px");
+      raiz.style.setProperty("--vit-cel-w", Math.floor(altura * razao) + "px");
+      raiz.style.setProperty("--vit-alt", Math.floor(altura) + "px");
+    }
+    const desk = this.vitDeskRef.current;
+    const cel = this.vitCelRef.current;
+    if (!raiz || !desk || !cel || !desk.clientWidth || !cel.clientWidth) return;
+    const escCel = cel.clientWidth / 390;
+    const proj = this.vitrineProjeto();
+    const barra = !!(proj && proj.vitrine.celular && proj.vitrine.celular.barraStatus);
+    const topo = barra ? 46 * escCel : 0;
+    raiz.style.setProperty("--vit-esc-desk", (desk.clientWidth / 1280).toFixed(4));
+    raiz.style.setProperty("--vit-esc-cel", escCel.toFixed(4));
+    raiz.style.setProperty("--vit-cel-topo", topo.toFixed(2) + "px");
+    raiz.style.setProperty("--vit-cel-h", Math.round((cel.clientHeight - topo) / escCel));
+  }
+
+  // Liga observadores quando o bloco da vitrine aparece no DOM.
+  vitConectar() {
+    const raiz = this.vitRef.current;
+    if (!raiz || this.vitObservado === raiz) return;
+    this.vitObservado = raiz;
+    if (this.vitResize) this.vitResize.disconnect();
+    if (this.vitVisao) this.vitVisao.disconnect();
+    this.vitResize = new ResizeObserver(() => this.vitMedir());
+    [raiz, this.vitAreaRef.current, this.vitDeskRef.current, this.vitCelRef.current].forEach((el) => el && this.vitResize.observe(el));
+    window.addEventListener("resize", () => this.vitMedir());
+    this.vitMedir();
+    this.vitVisao = new IntersectionObserver(
+      ([entrada]) => {
+        this.vitVisivel = entrada.isIntersecting;
+        if (!this.vitVisivel) return;
+        if (this.vitPendente && this.state.vitTocando) {
+          this.vitPendente = false;
+          this.vitSeguir();
+        } else this.vitTalvezComecar();
+      },
+      { threshold: 0.35 },
+    );
+    this.vitVisao.observe(raiz);
+    const anima = () => {
+      this.vitRaf = requestAnimationFrame(anima);
+      if (!this.vitRef.current) return;
+      let p = 0;
+      if (this.state.vitIniciado) {
+        p = this.vitFeito ? 1 : Math.min(0.96, (performance.now() - this.vitInicio) / this.vitDuracao);
+      }
+      const txt = p.toFixed(3);
+      if (txt !== this.vitProgAnterior) {
+        this.vitProgAnterior = txt;
+        this.vitRef.current.style.setProperty("--vit-prog", txt);
+      }
+    };
+    cancelAnimationFrame(this.vitRaf);
+    anima();
+  }
+
+  // Selo na barra do navegador: o perfil que aparece no computador.
+  mapaSelo(passo) {
+    const f = (passo && passo.perfis && passo.perfis.desktop) || null;
+    const usuario = f && f.tipo === "usuario";
+    return {
+      vitPerfilDesk: (f && f.nome) || "",
+      vitSeloDesk:
+        "flex:none;max-width:170px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" +
+        "font-family:Inter,sans-serif;font-size:10.5px;font-weight:700;border-radius:999px;padding:3px 9px;" +
+        (f ? "display:inline-block;" : "display:none;") +
+        (usuario
+          ? "color:#A7F3D0;background:rgba(16,185,129,0.14);border:1px solid rgba(52,211,153,0.45)"
+          : "color:#BFDBFE;background:rgba(37,99,235,0.16);border:1px solid rgba(59,130,246,0.5)"),
+    };
+  }
+
+  // Monta os campos da vitrine para o template.
+  mapaVitrine() {
+    const proj = this.vitrineProjeto();
+    if (!proj) return { temVitrine: false, vitPassos: [], vitTecnologias: [], vitPontos: [] };
+    const lista = this.vitrines();
+    const v = proj.vitrine;
+    const links = proj.links || {};
+    const passos = v.passos || [];
+    const atual = this.state.vitPasso;
+    const sep = v.app.indexOf("?") >= 0 ? "&" : "?";
+    const cel = v.celular || {};
+    const png = !!cel.moldura;
+    const tela = cel.tela || {};
+    const seta = () =>
+      "flex:none;width:40px;height:40px;border-radius:50%;" +
+      "display:" + (lista.length > 1 ? "flex" : "none") + ";align-items:center;justify-content:center;cursor:pointer;color:#DBEAFE;" +
+      "background:rgba(7,20,38,0.92);border:1px solid rgba(59,130,246,0.55);backdrop-filter:blur(8px);" +
+      "box-shadow:0 10px 30px -10px rgba(0,0,0,0.9),0 0 22px -6px rgba(37,99,235,0.9);transition:all .25s";
+    return {
+      temVitrine: true,
+      vitNome: proj.nome,
+      vitCategoria: proj.categoria,
+      vitDescricao: proj.descricao,
+      vitTecnologias: proj.tecnologias || [],
+      vitDemo: links.demo || v.app,
+      vitSrcDesktop: v.app + sep + "vitrine=desktop&canal=" + this.vitCanal,
+      vitSrcCelular: v.app + sep + "vitrine=celular&canal=" + this.vitCanal,
+      vitEndereco: (v.dominio || "") + "/#/" + ((passos[atual] && passos[atual].endereco) || ""),
+      ...this.mapaSelo(passos[atual]),
+      vitStatus: this.state.vitTocando ? "Passo " + (atual + 1) + " de " + passos.length : "Pausado",
+      vitTocando: this.state.vitTocando,
+      vitParado: !this.state.vitTocando,
+      vitBotaoRotulo: this.state.vitTocando ? "Pausar a sequência" : "Reproduzir a sequência",
+      vitAlternar: () => this.vitAlternar(),
+      vitAnterior: () => this.vitTrocar(-1),
+      vitProximo: () => this.vitTrocar(1),
+      vitSetaEsq: seta(),
+      vitSetaDir: seta(),
+      vitVarios: lista.length > 1,
+      vitContador: String(this.state.vitIdx + 1).padStart(2, "0") + " / " + String(lista.length).padStart(2, "0"),
+      vitPontos: lista.map((p, i) => ({
+        nome: p.nome,
+        ir: () => this.vitTrocar(i - this.state.vitIdx),
+        estilo:
+          "display:inline-flex;align-items:center;gap:8px;cursor:pointer;font:inherit;font-size:12.5px;font-weight:600;min-height:40px;" +
+          "border-radius:999px;padding:7px 15px;transition:all .25s;" +
+          (i === this.state.vitIdx
+            ? "color:#F8FAFC;background:rgba(37,99,235,0.22);border:1px solid rgba(59,130,246,0.6)"
+            : "color:#64748B;background:transparent;border:1px solid rgba(148,163,184,0.18)"),
+      })),
+      vitPassos: passos.map((s, i) => {
+        const ativo = i === atual;
+        const feito = i < atual;
+        return {
+          numero: String(i + 1),
+          titulo: s.titulo,
+          descricao: s.descricao,
+          ativo,
+          selecionar: () => this.vitIniciar(i),
+          estilo:
+            "width:100%;display:flex;gap:12px;align-items:flex-start;text-align:left;cursor:pointer;font:inherit;" +
+            "border:0;background:transparent;color:inherit;padding:6px 0;transition:opacity .25s;" +
+            (ativo ? "opacity:1" : "opacity:0.85"),
+          marcadorEstilo:
+            "position:relative;z-index:1;flex:none;width:23px;height:23px;border-radius:50%;display:flex;align-items:center;" +
+            "justify-content:center;font-family:Manrope,sans-serif;font-size:11px;font-weight:700;transition:all .3s;" +
+            (ativo
+              ? "color:#FFFFFF;background:#2563EB;box-shadow:0 0 0 4px rgba(37,99,235,0.2),0 0 16px rgba(59,130,246,0.8)"
+              : feito
+                ? "color:#93C5FD;background:#0B1A30;border:1px solid rgba(59,130,246,0.55)"
+                : "color:#64748B;background:#0B1220;border:1px solid rgba(148,163,184,0.25)"),
+          tituloEstilo:
+            "font-size:" + (ativo ? "14px" : "13.5px") + ";font-weight:600;letter-spacing:-0.005em;line-height:1.3;" +
+            (ativo ? "color:#F8FAFC" : feito ? "color:#94A3B8" : "color:#64748B"),
+        };
+      }),
+      // Celular: moldura em CSS (padrão) ou PNG enviado em media/projetos.
+      celBarra: !!cel.barraStatus,
+      celTemPng: png,
+      celSemPng: !png,
+      celMoldura: cel.moldura || "",
+      celStyle:
+        "position:relative;flex:none;width:var(--vit-cel-w,20%);z-index:3;" +
+        "aspect-ratio:" + (png && cel.proporcao ? cel.proporcao : "418 / 872") + ";" +
+        "filter:drop-shadow(0 30px 40px rgba(0,0,0,0.7)) drop-shadow(0 0 30px rgba(37,99,235,0.25))",
+      celCorpoStyle: png
+        ? "display:none"
+        : "position:absolute;inset:0;border-radius:15% / 7.2%;background:linear-gradient(150deg,#2B3443,#0B0F17 40%,#151C28);" +
+          "box-shadow:inset 0 0 0 1.5px rgba(148,163,184,0.35),inset 0 0 0 5px #05070C",
+      celTelaStyle:
+        "position:absolute;overflow:hidden;background:#FFFFFF;z-index:1;transform:translateZ(0);" +
+        (png
+          ? "top:" + (tela.top || "2%") + ";left:" + (tela.left || "5%") + ";width:" + (tela.width || "90%") +
+            ";height:" + (tela.height || "96%") + ";border-radius:" + (tela.raio || "11% / 5%")
+          : "top:1.61%;left:3.35%;width:93.3%;height:96.78%;border-radius:12.6% / 5.85%"),
+    };
+  }
+
+  componentDidMount() {
+    this.onMensagem = (e) => this.vitAoMensagem(e);
+    window.addEventListener("message", this.onMensagem);
+    import("./projects-data.js")
+      .then((m) => this.setState({ projetos: m.default || [] }, () => {
+        requestAnimationFrame(() => this.medeTrilho());
+      }))
+      .catch(() => {});
+    this.onResize = () => {
+      this.medeTrilho();
+      if (this.state.menuAberto && window.innerWidth > 1060) this.setState({ menuAberto: false });
+    };
+    window.addEventListener("resize", this.onResize);
+    this.iniciaPalavras();
+    this.iniciaRotacoes();
+    import("./video-data.js")
+      .then((m) => this.setState({ video: m.default || null }))
+      .catch(() => {});
+    import("./contato-data.js")
+      .then((m) => this.setState({ contato: m.default || null }))
+      .catch(() => {});
+    this.applyAccent();
+    this.onScroll = () => {
+      if (this.raf) return;
+      this.raf = requestAnimationFrame(() => {
+        this.raf = null;
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const r = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+        document.documentElement.style.setProperty("--sy", r.toFixed(3));
+      });
+    };
+    window.addEventListener("scroll", this.onScroll, { passive: true });
+    this.onScroll();
+  }
+
+  componentWillUnmount() {
+    if (this.onScroll) window.removeEventListener("scroll", this.onScroll);
+    if (this.onMensagem) window.removeEventListener("message", this.onMensagem);
+    if (this.vitResize) this.vitResize.disconnect();
+    if (this.vitVisao) this.vitVisao.disconnect();
+    cancelAnimationFrame(this.vitRaf);
+    clearTimeout(this.vitTimer);
+    clearTimeout(this.vitLimite);
+    if (this.onResize) window.removeEventListener("resize", this.onResize);
+    if (this.timerPalavra) clearTimeout(this.timerPalavra);
+    clearInterval(this.metodoTimer);
+    clearInterval(this.ferTimer);
+    if (this.obsRotacao) this.obsRotacao.disconnect();
+    if (this.rafPalavra) cancelAnimationFrame(this.rafPalavra);
+  }
+
+  componentDidUpdate() {
+    this.applyAccent();
+    this.vitConectar();
+  }
+
+  applyAccent() {
+    const a = this.props.accentColor;
+    if (!a) return;
+    const r = document.documentElement.style;
+    r.setProperty("--accent", a);
+  }
+
+  // Converte cada item de projects-data.js no formato que o card espera.
+  // Os projetos em vitrine não entram no carrossel.
+  // A capa vem de home/media/projetos/<id>.png por convenção; se o arquivo
+  // não existir, o <img> some no onError e fica a moldura vazia atrás.
+  mapaProjetos() {
+    return (this.state.projetos || []).filter((p) => !p.vitrine).map((p) => {
+      const midia = p.midia || {};
+      const links = p.links || {};
+      return {
+        id: p.id,
+        nome: p.nome,
+        categoria: p.categoria,
+        descricao: p.descricao,
+        tecnologias: p.tecnologias || [],
+        midiaSrc: midia.src || "media/projetos/" + p.id + ".png",
+        midiaAlt: midia.alt || p.nome || "",
+        aoFalharImagem: (e) => { e.target.style.display = "none"; },
+        temDemo: !!links.demo,
+        semLinks: !links.demo,
+        demoHref: links.demo || "",
+        cardStyle:
+          "flex:0 0 calc((100% - (var(--proj-visiveis) - 1) * 20px) / var(--proj-visiveis));background:var(--card);border-radius:15px;" +
+          "overflow:hidden;display:flex;flex-direction:column;transition:border-color .3s,transform .3s,box-shadow .3s;" +
+          (p.destaque
+            ? "border:1px solid rgba(59,130,246,0.42);box-shadow:0 24px 60px -34px rgba(37,99,235,0.75);"
+            : "border:1px solid var(--line);"),
+      };
+    });
+  }
+
+  // Converte home/video-data.js nos campos da seção #video.
+  mapaVideo() {
+    const v = this.state.video || {};
+    const ativo = v.ativo !== false;
+    const arquivo = ativo ? v.arquivo || "" : "";
+    const embed = ativo && !arquivo ? v.embed || "" : "";
+    const ordem = RS_VIDEO_POSICOES[v.posicao] || RS_VIDEO_POSICOES["depois-de-projetos"];
+    return {
+      showVideoDestaque: (this.props.showVideoDestaque ?? true) && ativo,
+      videoOrder: ordem,
+      videoNavRotulo: v.navRotulo || "",
+      videoModoArquivo: !!arquivo,
+      videoModoEmbed: !!embed,
+      videoModoVazio: !arquivo && !embed,
+      videoSrc: arquivo || embed,
+      videoPoster: v.poster || "",
+      videoEtiqueta: v.etiqueta || "",
+      videoTitulo1: v.tituloLinha1 || "",
+      videoTitulo2: v.tituloLinha2 || "",
+      videoTitulo: (v.tituloLinha1 || "") + " + " + (v.tituloLinha2 || ""),
+      videoDescricao: v.descricao || "",
+      // Faixa clara: quebra proposital com o resto da página, que é escura.
+      videoSectionStyle:
+        "order:" + ordem + ";padding:clamp(40px,4.2vw,62px) 0;color:#0B2A6B;" +
+        "background:linear-gradient(118deg,#FFFFFF 0%,#EFF4FF 100%)",
+      // Sem borda: o arredondamento recorta o próprio vídeo (overflow:hidden).
+      videoMolduraStyle:
+        "position:relative;overflow:hidden;border-radius:20px;transform:translateZ(0);" +
+        "box-shadow:0 30px 70px -38px rgba(5,20,60,0.5);" +
+        "aspect-ratio:" + (v.proporcao || "16 / 9"),
+      // O canvas da peça é escalado descontando 44px fixos da barra de play
+      // (barH em animations-v3.jsx), que o embed esconde. Sem compensar isso
+      // sobra uma folga em volta do vídeo. Damos 44px a mais de altura ao
+      // iframe e subimos 22px, para o quadro encostar nas quatro bordas.
+      videoIframeStyle:
+        "position:absolute;left:0;top:-22px;width:100%;height:calc(100% + 44px);" +
+        "border:0;display:block;background:transparent",
+    };
+  }
+
+  points(vals) {
+    const step = 320 / (vals.length - 1);
+    return vals.map((v, i) => [Math.round(i * step * 10) / 10, Math.round((92 - v * 0.8) * 10) / 10]);
+  }
+
+  renderVals() {
+    const vid = this.mapaVideo();
+    const per = this.state.periodo;
+    const kpis = [
+      { label: "Receita", valor: "R$ 5,24M", delta: "+ 12,4%", titulo: "Receita ao longo do tempo", fator: 1, unidade: "R$ " , escala: 62 },
+      { label: "Clientes", valor: "1.248", delta: "+ 8,2%", titulo: "Clientes ao longo do tempo", fator: 0.92, unidade: "", escala: 14 },
+      { label: "Conversão", valor: "3,62%", delta: "+ 1,1 pp", titulo: "Conversão ao longo do tempo", fator: 0.8, unidade: "", escala: 0.06 },
+      { label: "Ticket médio", valor: "R$ 842", delta: "+ 15,7%", titulo: "Ticket médio ao longo do tempo", fator: 1.08, unidade: "R$ ", escala: 9.5 },
+    ];
+    const ki = Math.min(kpis.length - 1, Math.max(0, this.state.kpi));
+    const kpiSel = kpis[ki];
+    const base = (RS_SERIES[per] || RS_SERIES.Mensal).map((v) => Math.min(99, v * kpiSel.fator));
+    const pts = this.points(base);
+    const line = pts.map((p, i) => (i ? "L" : "M") + p[0] + " " + p[1]).join(" ");
+    const tabBase =
+      "font-family:Inter,sans-serif;font-size:11px;font-weight:500;border-radius:7px;padding:5px 10px;cursor:pointer;transition:all .25s;";
+    const periodos = ["Mensal", "Trimestre", "Anual"].map((label) => ({
+      label,
+      style:
+        tabBase +
+        (label === per
+          ? "color:#DBEAFE;background:rgba(37,99,235,0.22);border:1px solid rgba(59,130,246,0.55);box-shadow:0 0 18px -4px rgba(37,99,235,0.95);"
+          : "color:#94A3B8;background:transparent;border:1px solid rgba(148,163,184,0.16);"),
+      onSelect: () => this.setState({ periodo: label }),
+    }));
+    // Serviços: grade fixa de cartões (ícone grande e nome).
+    const servicos = RS_SERVICOS.map((sv) => ({ nome: sv.nome, paths: sv.paths }));
+    // Metodologia: etapas com a ativa em destaque e a linha preenchida até ela.
+    const mAtivo = this.state.metodoAtivo;
+    const metodo = RS_METODO.map((m, i) => {
+      const ativo = i === mAtivo;
+      const feito = i < mAtivo;
+      return {
+        numero: String(i + 1).padStart(2, "0"),
+        titulo: m[0],
+        texto: m[1],
+        selecionar: () => this.escolheEtapa(i),
+        ativoTxt: ativo ? "true" : "false",
+        pontoEstilo:
+          "position:relative;z-index:1;width:14px;height:14px;border-radius:50%;transition:all .45s;" +
+          (ativo
+            ? "background:#3B82F6;box-shadow:0 0 0 5px rgba(37,99,235,0.22),0 0 18px 2px rgba(59,130,246,0.95)"
+            : feito
+              ? "background:#2563EB;box-shadow:0 0 0 3px rgba(37,99,235,0.12)"
+              : "background:#0B1624;box-shadow:inset 0 0 0 1.5px rgba(148,163,184,0.35)"),
+        numeroEstilo:
+          "font-family:Manrope,sans-serif;font-size:34px;font-weight:800;letter-spacing:-0.04em;line-height:1;margin-top:20px;transition:color .45s;" +
+          (ativo ? "color:#60A5FA;text-shadow:0 0 24px rgba(59,130,246,0.6)" : feito ? "color:#2B4E86" : "color:#1E293B"),
+        tituloEstilo:
+          "font-family:Manrope,sans-serif;font-size:16.5px;font-weight:600;letter-spacing:-0.015em;margin-top:12px;transition:color .45s;" +
+          (ativo ? "color:#F8FAFC" : "color:#94A3B8"),
+        textoEstilo:
+          "font-size:13.5px;line-height:1.6;margin-top:7px;transition:color .45s;" + (ativo ? "color:#94A3B8" : "color:#64748B"),
+      };
+    });
+    const menuAberto = this.state.menuAberto;
+    return {
+      menuAberto,
+      menuFechado: !menuAberto,
+      menuAbertoTxt: menuAberto ? "true" : "false",
+      menuRotulo: menuAberto ? "Fechar menu" : "Abrir menu",
+      menuAlternar: () => this.setState({ menuAberto: !menuAberto }),
+      menuFechar: () => this.setState({ menuAberto: false }),
+      servicos,
+      metodoGridRef: this.metodoGridRef,
+      ferAtivo: String(this.state.ferAtivo),
+      metodo,
+      metodoRef: this.metodoRef,
+      metodoPreenchimento:
+        "height:100%;border-radius:2px;background:linear-gradient(90deg,#2563EB,#60A5FA);box-shadow:0 0 12px rgba(59,130,246,0.8);" +
+        "transition:width .6s cubic-bezier(.22,1,.36,1);width:" + ((mAtivo / (RS_METODO.length - 1)) * 100).toFixed(2) + "%",
+      projetos: this.mapaProjetos(),
+      ...this.mapaContato(),
+      railRef: this.railRef,
+      railScroll: (e) => this.aoRolarTrilho(e),
+      barraRef: this.barraRef,
+      palavraRef: this.palavraRef,
+      barraInicia: (e) => this.iniciaArrasto(e),
+      ...this.mapaBarra(),
+      ...this.mapaVitrine(),
+      vitRef: this.vitRef,
+      vitDeskRef: this.vitDeskRef,
+      vitCelRef: this.vitCelRef,
+      vitDeskFrame: this.vitDeskFrame,
+      vitCelFrame: this.vitCelFrame,
+      vitPalcoRef: this.vitPalcoRef,
+      vitAreaRef: this.vitAreaRef,
+      ...vid,
+      showHeroMockup: this.props.showHeroMockup ?? true,
+      periodos,
+      periodoLegenda: RS_LEGENDA[per],
+      linePath: line,
+      areaPath: line + " L320 100 L0 100 Z",
+      chartTitulo: kpiSel.titulo,
+      barras: (RS_BARS[per] || RS_BARS.Mensal).map((h, i) => {
+        const on = this.state.barHover === i;
+        const num = (h * kpiSel.escala) / 10;
+        return {
+          h,
+          label: "P" + (i + 1),
+          valor:
+            kpiSel.unidade +
+            num.toLocaleString("pt-BR", { minimumFractionDigits: kpiSel.escala < 1 ? 2 : 0, maximumFractionDigits: kpiSel.escala < 1 ? 2 : 0 }) +
+            (kpiSel.label === "Conversão" ? "%" : ""),
+          onEnter: () => this.setState({ barHover: i }),
+          onLeave: () => this.setState({ barHover: -1 }),
+          barStyle:
+            "width:100%;height:" +
+            h +
+            "%;border-radius:5px 5px 2px 2px;background:linear-gradient(180deg,#60A5FA,#1D4ED8);transition:filter .25s,transform .25s;" +
+            (on ? "filter:drop-shadow(0 0 14px rgba(96,165,250,1)) brightness(1.2);transform:scaleY(1.05);" : ""),
+          tipStyle:
+            "position:absolute;bottom:calc(100% - 2px);left:50%;transform:translateX(-50%) translateY(" +
+            (on ? "0" : "4px") +
+            ");font-size:9.5px;font-weight:600;color:#DBEAFE;background:rgba(7,20,38,0.96);border:1px solid rgba(59,130,246,0.5);border-radius:6px;padding:3px 7px;white-space:nowrap;pointer-events:none;transition:opacity .2s,transform .2s;opacity:" +
+            (on ? "1" : "0") +
+            ";box-shadow:0 0 18px -4px rgba(37,99,235,0.9);z-index:3",
+        };
+      }),
+      kpis: kpis.map((k, i) => ({
+        label: k.label,
+        valor: k.valor,
+        delta: k.delta,
+        onSelect: () => this.setState({ kpi: i }),
+        style:
+          "position:relative;cursor:pointer;border-radius:11px;padding:12px 13px;transition:border-color .3s,box-shadow .3s,background .3s;" +
+          (i === ki
+            ? "border:1px solid rgba(59,130,246,0.6);background:linear-gradient(160deg,rgba(30,64,150,0.55),rgba(7,20,38,0.6));box-shadow:0 0 26px -8px rgba(37,99,235,0.95);"
+            : "border:1px solid rgba(148,163,184,0.12);background:linear-gradient(160deg,rgba(11,22,36,0.9),rgba(7,20,38,0.5));"),
+      })),
+      // O menu segue a mesma ordem visual das seções. Se o vídeo estiver ativo
+      // e tiver "navRotulo" preenchido em video-data.js, ele entra sozinho no
+      // lugar certo — não precisa mexer nesta lista ao mover o bloco.
+      navItens: (() => {
+        const itens = [
+          { label: "Início", href: "#inicio", ordem: 10 },
+          { label: "Soluções", href: "#solucoes", ordem: 20 },
+          { label: "Metodologia", href: "#processo", ordem: 30 },
+          { label: "Projetos", href: "#projetos", ordem: 40 },
+          { label: "Sobre", href: "#sobre", ordem: 60 },
+          { label: "Contato", href: "#contato", ordem: 80 },
+        ];
+        if (vid.showVideoDestaque && vid.videoNavRotulo) {
+          itens.push({ label: vid.videoNavRotulo, href: "#video", ordem: vid.videoOrder });
+        }
+        itens.sort((a, b) => a.ordem - b.ordem);
+        return itens.map((item, i) => {
+          const on = this.state.navHover === i;
+          return {
+            label: item.label,
+            href: item.href,
+            onEnter: () => this.setState({ navHover: i }),
+            onLeave: () => this.setState({ navHover: -1 }),
+            dotStyle:
+              "position:absolute;left:50%;bottom:1px;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:#3B82F6;box-shadow:0 0 10px 2px rgba(59,130,246,0.95),0 0 20px 4px rgba(37,99,235,0.6);transition:opacity .25s,transform .25s;pointer-events:none;opacity:" +
+              (on ? "1" : "0") +
+              ";transform:scale(" +
+              (on ? "1" : "0.3") +
+              ")",
+          };
+        });
+      })(),
+    };
+  }
+}
+</script>
+</body>
+</html>
