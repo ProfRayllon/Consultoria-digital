@@ -105,5 +105,15 @@ um iframe. Ao exportar, veja [`home/media/LEIA-ME.md`](home/media/LEIA-ME.md) �
 ## Rodar o projeto
 
 Na raiz do projeto:
+
+```
 python -m http.server 8000
-Home: http://localhost:8000/home/Portfolio%20Rayllon%20Soares.dc.html
+```
+
+Home: http://localhost:8000/ (redireciona para `home/Portfolio Rayllon Soares.dc.html`)
+
+## Publicação (GitHub Pages)
+
+O `index.html` da raiz só redireciona para a home. O arquivo `.nojekyll` impede o
+GitHub Pages de renderizar este README no lugar do site e de ocultar pastas que
+começam com `_`.
