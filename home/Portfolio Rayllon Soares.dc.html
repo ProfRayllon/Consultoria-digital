@@ -43,11 +43,11 @@ a:hover{color:#60A5FA}
 @keyframes rsMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media (max-width:760px){ :root{ --hero-cols:minmax(0,1fr) } }
 @media (max-width:900px){ :root{ --metodo-linha:none } }
-@media (max-width:560px){ :root{ --serv-grid:repeat(2,minmax(0,1fr)); --serv-gap:10px; --serv-card-h:128px; --serv-card-gap:14px; --serv-card-pad:16px; --serv-card-raio:14px; --serv-ico:46px; --serv-nome:14.5px } }
+@media (max-width:560px){ :root{ --serv-gap:8px; --serv-card-h:0px; --serv-card-gap:10px; --serv-card-pad:14px 8px; --serv-card-raio:12px; --serv-ico:40px; --serv-nome:12px } }
 @media (max-width:560px){ :root{ --vit-contador:none } }
 @media (max-width:980px){ :root{ --vit-dir:column; --vit-passos-w:100%; --vit-passos-ordem:2; --vit-passos-alto:auto } }
 @media (max-width:1060px){ :root{ --nav-display:none; --proj-visiveis:3 } }
-@media (max-width:820px){ :root{ --sobre-cols:96px minmax(0,1fr); --sobre-foto-row:auto; --sobre-cab-align:center; --sobre-corpo-col:1 / -1; --sobre-rgap:22px; --sobre-h2-m:6px 0 0; --sobre-sub:block; --sobre-foto-raio:14px; --fer-cols:minmax(0,1fr); --video-cols:minmax(0,1fr); --serv-grid:repeat(2,minmax(0,1fr)); --proj-visiveis:2 } }
+@media (max-width:820px){ :root{ --sobre-cols:96px minmax(0,1fr); --sobre-foto-row:auto; --sobre-cab-align:center; --sobre-corpo-col:1 / -1; --sobre-rgap:22px; --sobre-h2-m:6px 0 0; --sobre-sub:block; --sobre-foto-raio:14px; --fer-cols:minmax(0,1fr); --video-cols:minmax(0,1fr); --proj-visiveis:2 } }
 @media (max-width:560px){ :root{ --proj-visiveis:1 } }
 @media (max-width:880px){ :root{ --nav-display:none } }
 @media (max-width:1060px){ :root{ --menu-btn:flex } }
@@ -85,6 +85,25 @@ a:hover{color:#60A5FA}
   #ferramentas[data-fer="1"] [data-fer-linha="1"],
   #ferramentas[data-fer="2"] [data-fer-linha="2"],
   #ferramentas[data-fer="3"] [data-fer-linha="3"]{display:grid!important;animation:rsFade .5s ease both}
+}
+@media (max-width:560px){
+  /* Serviços: 3 colunas x 2 linhas, ícone em cima e nome centralizado. */
+  [data-serv]{align-items:center!important;justify-content:flex-start!important;text-align:center}
+  [data-serv-ico]{border-radius:12px!important}
+  /* Contato: os dois botões lado a lado. */
+  [data-cta-botoes]{flex-wrap:nowrap!important;gap:10px!important;margin-top:30px!important}
+  [data-cta-botoes] > a{flex:1 1 0;min-width:0;text-align:center;white-space:nowrap;padding:13px 10px!important;font-size:13.5px!important}
+}
+@media (max-width:760px){
+  /* Vitrine: só a tela do computador, sem setas e sem o botão Demo. */
+  [data-vit-seta],[data-vit-demo],[data-vit-cel]{display:none!important}
+  /* Rodapé compacto: navegação e contato em duas colunas. */
+  footer{padding:22px 0 16px!important}
+  [data-rodape]{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:16px!important}
+  [data-rodape-marca]{display:none!important}
+  [data-rodape] > div > span{font-size:10.5px!important;margin-bottom:2px!important}
+  [data-rodape] a{min-height:28px!important;font-size:13px!important;color:#64748B!important}
+  [data-rodape-copy]{margin-top:16px!important;padding:12px var(--gutter,18px) 0!important;font-size:11px!important;text-align:center}
 }
 </style>
 <script src="./image-slot.js"></script>
@@ -322,10 +341,10 @@ a:hover{color:#60A5FA}
             </sc-for>
             <span style="flex:1"></span>
             <span style="display:var(--vit-contador,inline);font-family:Manrope,sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;color:#475569">{{ vitContador }}</span>
-            <button type="button" onClick="{{ vitAnterior }}" aria-label="Projeto anterior" style="{{ vitSetaEsq }}" style-hover="background:#1D4ED8;color:#FFFFFF;transform:scale(1.06)">
+            <button type="button" data-vit-seta="" onClick="{{ vitAnterior }}" aria-label="Projeto anterior" style="{{ vitSetaEsq }}" style-hover="background:#1D4ED8;color:#FFFFFF;transform:scale(1.06)">
               <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><path d="M10 3.5 5.5 8l4.5 4.5" /></svg>
             </button>
-            <button type="button" onClick="{{ vitProximo }}" aria-label="Próximo projeto" style="{{ vitSetaDir }}" style-hover="background:#1D4ED8;color:#FFFFFF;transform:scale(1.06)">
+            <button type="button" data-vit-seta="" onClick="{{ vitProximo }}" aria-label="Próximo projeto" style="{{ vitSetaDir }}" style-hover="background:#1D4ED8;color:#FFFFFF;transform:scale(1.06)">
               <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><path d="M6 3.5 10.5 8 6 12.5" /></svg>
             </button>
           </div>
@@ -341,7 +360,7 @@ a:hover{color:#60A5FA}
                 <p style="margin:7px 0 0;font-size:14px;line-height:1.55;color:var(--muted)">{{ vitDescricao }}</p>
               </div>
               <div style="display:flex;flex-wrap:wrap;gap:10px">
-                <a href="{{ vitDemo }}" target="_blank" rel="noreferrer" style="display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:#CBD5E1;border:1px solid rgba(148,163,184,0.28);border-radius:8px;padding:8px 14px;transition:all .25s" style-hover="color:#F8FAFC;border-color:rgba(59,130,246,0.65);background:rgba(37,99,235,0.12)">Demo<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px"><path d="M6 3.5h6.5V10M12.2 3.8 4 12" /></svg></a>
+                <a href="{{ vitDemo }}" data-vit-demo="" target="_blank" rel="noreferrer" style="display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:#CBD5E1;border:1px solid rgba(148,163,184,0.28);border-radius:8px;padding:8px 14px;transition:all .25s" style-hover="color:#F8FAFC;border-color:rgba(59,130,246,0.65);background:rgba(37,99,235,0.12)">Demo<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px"><path d="M6 3.5h6.5V10M12.2 3.8 4 12" /></svg></a>
               </div>
             </div>
 
@@ -362,7 +381,7 @@ a:hover{color:#60A5FA}
                   </div>
                 </div>
 
-                <div style="{{ celStyle }}">
+                <div data-vit-cel="" style="{{ celStyle }}">
                   <div style="{{ celCorpoStyle }}"></div>
                   <div ref="{{ vitCelRef }}" style="{{ celTelaStyle }}">
                     <sc-if value="{{ celBarra }}" hint-placeholder-val="{{ false }}">
@@ -576,7 +595,7 @@ a:hover{color:#60A5FA}
     <div data-reveal="" style="position:relative;max-width:820px;margin:0 auto;padding:0 var(--gutter,24px);text-align:center">
       <h2 style="font-family:Manrope,sans-serif;font-weight:700;font-size:clamp(28px,3.6vw,46px);line-height:1.12;letter-spacing:-0.03em;margin:0 auto;max-width:24ch">Vamos transformar uma necessidade em uma solução digital?</h2>
       <p style="margin:24px auto 0;font-size:16.5px;line-height:1.7;color:var(--muted);max-width:60ch">Vamos conversar sobre seu projeto, processo ou desafio e avaliar como a tecnologia pode gerar mais eficiência, informação e resultados.</p>
-      <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:38px">
+      <div data-cta-botoes="" style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:38px">
         <a href="{{ whatsHref }}" target="_blank" rel="noreferrer" style="background:var(--accent);color:#F8FAFC;font-size:14.5px;font-weight:600;padding:14px 28px;border-radius:9px;box-shadow:0 0 0 1px rgba(59,130,246,0.4),0 16px 44px -16px rgba(37,99,235,1)" style-hover="background:#1D4ED8;color:#F8FAFC">Agendar conversa</a>
         <a href="{{ emailHref }}" style="border:1px solid var(--line);color:#F8FAFC;font-size:14.5px;font-weight:600;padding:14px 28px;border-radius:9px" style-hover="border-color:rgba(59,130,246,0.55);color:#F8FAFC">Enviar mensagem</a>
       </div>
@@ -584,8 +603,8 @@ a:hover{color:#60A5FA}
   </section>
 
   <footer style="order:90;border-top:1px solid var(--line);background:rgba(7,20,38,0.8);padding:44px 0 34px">
-    <div style="max-width:1180px;margin:0 auto;padding:0 var(--gutter,24px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:36px;align-items:start">
-      <div>
+    <div data-rodape="" style="max-width:1180px;margin:0 auto;padding:0 var(--gutter,24px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:36px;align-items:start">
+      <div data-rodape-marca="">
         <a href="#inicio" style="display:inline-flex;align-items:center;gap:12px">
           <img src="uploads/logo.png" alt="Rayllon Soares" style="height:46px;width:auto;display:block;filter:drop-shadow(0 0 14px rgba(59,130,246,0.35))" />
           <span style="display:flex;flex-direction:column;line-height:1">
@@ -610,7 +629,7 @@ a:hover{color:#60A5FA}
         <sc-if value="{{ temWhats }}" hint-placeholder-val="{{ true }}"><a href="{{ whatsHref }}" target="_blank" rel="noreferrer" style="color:#94A3B8;display:inline-flex;align-items:center;min-height:40px" style-hover="color:#F8FAFC">WhatsApp</a></sc-if>
       </div>
     </div>
-    <div style="max-width:1180px;margin:44px auto 0;padding:20px 24px 0;border-top:1px solid var(--line);font-size:12.5px;color:#64748B">© 2026 Rayllon Soares. Todos os direitos reservados.</div>
+    <div data-rodape-copy="" style="max-width:1180px;margin:44px auto 0;padding:20px 24px 0;border-top:1px solid var(--line);font-size:12.5px;color:#64748B">© 2026 Rayllon Soares. Todos os direitos reservados.</div>
   </footer>
 
   <!-- ============================================================================
@@ -975,6 +994,11 @@ class Component extends DCLogic {
     return lista.length ? lista[Math.min(this.state.vitIdx, lista.length - 1)] : null;
   }
 
+  // No mobile a tela do celular fica oculta (CSS): só o computador conta.
+  vitSoDesk() {
+    return window.matchMedia("(max-width:760px)").matches;
+  }
+
   vitEnviar(msg) {
     [this.vitDeskFrame, this.vitCelFrame].forEach((r) => {
       const w = r.current && r.current.contentWindow;
@@ -1024,7 +1048,7 @@ class Component extends DCLogic {
 
   vitTalvezComecar() {
     if (this.state.vitIniciado || !this.state.vitTocando) return;
-    if (this.vitProntos.desktop && this.vitProntos.celular && this.vitVisivel) this.vitIniciar(0);
+    if (this.vitProntos.desktop && (this.vitProntos.celular || this.vitSoDesk()) && this.vitVisivel) this.vitIniciar(0);
   }
 
   vitAoMensagem(e) {
@@ -1038,7 +1062,7 @@ class Component extends DCLogic {
     }
     if (d.tipo === "fim" && d.passo === this.state.vitPasso) {
       this.vitFins[d.tela] = true;
-      if (this.vitFins.desktop && this.vitFins.celular) this.vitConcluir(d.passo);
+      if (this.vitFins.desktop && (this.vitFins.celular || this.vitSoDesk())) this.vitConcluir(d.passo);
     }
   }
 
@@ -1087,7 +1111,9 @@ class Component extends DCLogic {
       const vao = largura < 700 ? 10 : 24;
       const barraNav = 34;
       const alturaMax = Math.max(300, window.innerHeight - 300);
-      const desk = Math.min((largura - vao - razao * barraNav) / (1 + razao * 0.625), (alturaMax - barraNav) / 0.625);
+      const desk = this.vitSoDesk()
+        ? largura
+        : Math.min((largura - vao - razao * barraNav) / (1 + razao * 0.625), (alturaMax - barraNav) / 0.625);
       const altura = desk * 0.625 + barraNav;
       raiz.style.setProperty("--vit-gap", vao + "px");
       raiz.style.setProperty("--vit-desk-w", Math.floor(desk) + "px");
@@ -1096,12 +1122,13 @@ class Component extends DCLogic {
     }
     const desk = this.vitDeskRef.current;
     const cel = this.vitCelRef.current;
-    if (!raiz || !desk || !cel || !desk.clientWidth || !cel.clientWidth) return;
+    if (!raiz || !desk || !desk.clientWidth) return;
+    raiz.style.setProperty("--vit-esc-desk", (desk.clientWidth / 1280).toFixed(4));
+    if (!cel || !cel.clientWidth) return;
     const escCel = cel.clientWidth / 390;
     const proj = this.vitrineProjeto();
     const barra = !!(proj && proj.vitrine.celular && proj.vitrine.celular.barraStatus);
     const topo = barra ? 46 * escCel : 0;
-    raiz.style.setProperty("--vit-esc-desk", (desk.clientWidth / 1280).toFixed(4));
     raiz.style.setProperty("--vit-esc-cel", escCel.toFixed(4));
     raiz.style.setProperty("--vit-cel-topo", topo.toFixed(2) + "px");
     raiz.style.setProperty("--vit-cel-h", Math.round((cel.clientHeight - topo) / escCel));
